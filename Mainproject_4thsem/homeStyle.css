@@ -1,0 +1,155 @@
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: 'Minion Variable Concept';
+    }
+
+        .head{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            height: 10vh;
+        }
+        nav{
+            height:80px;
+            background:black;
+            display:flex;
+            align-items:center;
+            justify-content: center;
+            padding: 0px 50px 0px 50px;
+            border-bottom: 4px solid black;
+        }
+
+        .logo{
+            width: 300px;
+        }
+
+        nav ul{
+            display:flex;
+            list-style:none;
+        }
+
+        nav ul li{
+            margin: 0 5px;
+        }
+
+        nav ul li a button{
+            background-color: black;
+            color:white;
+            text-decoration: none;
+            font-size:26px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            padding:8px 10px;
+            border-left: none;
+            border-right: none;
+        }
+        nav ul li a .active{
+            background: black;
+            color: white;
+        }
+
+        nav ul li a button:hover{
+            background: black;
+            color: red;
+            border-color: red;
+            font-size: 28px;
+        }
+
+        nav .menu-button i{
+            color: black;
+            font-size: 22px;
+            cursor: pointer;
+            display: none;
+        }
+    
+   
+        #signin{
+            width: 98%;
+            height: 50vh;
+            margin: 5px;
+            border-radius: 15px;
+            padding: 10px;
+            font-size: x-large;
+        }
+
+        #signup{
+            width: 98%;
+            height: 50vh;
+            margin: 5px;
+            display: none;
+            border-radius: 15px;
+            padding: 10px;
+            font-size: x-large;
+        }
+        #signinstyle{
+            color: white;
+            font-size: larger;
+            margin-left: 5px;
+        }
+
+        #signupstyle{
+            font-size: larger;
+        }
+
+        .inputstyle{
+            width: 100%;
+            font-size: large;
+            margin: 3px;
+        }
+        .modal{
+            width:100%;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            position: absolute;
+            top: 0;
+            display: none;
+        }
+        .container{
+            width: 35%;
+            height: 60vh;
+            margin: 0 auto;
+            margin-top: 105px;
+            background: rgba(255, 255, 255, 0.7);
+            color: black;
+            border: 1px solid rgba(255, 255, 255, 1);
+            border-radius: 15px;
+            box-shadow: 5px 5px rgba(0, 0, 0, 0.7) ;
+        }
+        .closesign{
+            position: absolute;
+            font-size: 40px;
+            transform: rotate(45deg);
+            cursor: pointer;
+        }
+        .closesign:hover{
+            color: white;
+        }
+        .button_sign{
+            font-size: large;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .signbtn{
+            font-size: x-large;
+            border-radius: 5px;
+            margin: 5px;
+            border: none;
+            box-shadow: 2px 2px black;
+            width: 25%;
+            height: 5vh;
+        }
+        .signbtn:hover{
+            cursor: pointer;
+
+        }
+        .mySlides{
+            display:none;
+        }
+
+
+        
