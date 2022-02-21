@@ -12,27 +12,46 @@
         <div class="head" > 
             <span style="color: red;">FRIENDS'</span>&nbsp;Hotel
         </div>
-        <nav>
-            <ul>
-                <li> <a href="#" ><button class="active">Home</button></a></li>      
-                <li> <a href="Rooms.html"><button>Rooms</button></a></li>
-                <li> <a href="Aboutus.html"><button>About us</button></a></li>
-                <li> <a href="Contactus.html"><button>Contact us</button></a></li>
-                <li> <a><button onclick="document.getElementById('signdiv').style.display='block'">Sign in</button></a></li>
-            </ul>
-        </nav>
-        <div style="display: grid; grid-template-columns: 5% 90% 5%;  align-items: center;">
-            <div><button style=" margin-left: 20px; border: none; font-size: xx-large; background-color: white;" onclick="plusDivs(-1)">&#10094;</button></div>
+        
+            <nav>
+                <ul>
+                    <li> <a href="#" ><button class="active" style="color: red;">Home</button></a></li>      
+                    <li> <a href="Room.html"><button>Rooms</button></a></li>
+                    <li> <a href="Aboutus.html"><button>About us</button></a></li>
+                    <li> <a href="Contactus.html"><button>Contact us</button></a></li>
+                    <li> <a><button onclick="document.getElementById('signdiv').style.display='block'">Sign in</button></a></li>
+                </ul>
+            </nav>
+        
+        <div class="section">
+            <div class="sectiontxt">Check Room Availability</div>
+            <div class="subsectiontxt" >
+                <form>
+                    <div>
+                        CheckIn Date
+                        <input style="font-size: 24px;" type="date" /> &nbsp;
+                    
+                        CheckOut Date
+                        <input style="font-size: 24px;" type="date" />
+                    </div>
+                    <div>
+                        <input class="checkbutton"  type="button" value="Check Availability" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 5% 90% 5%;  align-items: center; background-color: black; margin-bottom: 5px; ">
+            <div><button style=" margin-left: 20px; border: none; font-size: xx-large; background-color: black; color: white;" onclick="plusDivs(-1)">&#10094;</button></div>
             
                 <div style="width: 100%; ">
-                    <img class="mySlides" src="images/Bagliono.jpg" style="width:100%; height:50vh">
-                    <img class="mySlides" src="images/hotel luna.jpg" style="width:100%; height:50vh">
-                    <img class="mySlides" src="images/out.jpg" style="width:100%; height:50vh">
-                    <img class="mySlides" src="images/hotel.jpg" style="width:100% ; height:50vh">
+                    <img class="mySlides" src="images/rrecp.jpg" style="width:100%; height:60vh">
+                    <img class="mySlides" src="images/hotel luna.jpg" style="width:100%; height:60vh">
+                    <img class="mySlides" src="images/out.jpg" style="width:100%; height:60vh">
+                    <img class="mySlides" src="images/hotel.jpg" style="width:100% ; height:60vh">
                 </div>
             
-                <div><button  style=" margin-left: 20px; border: none; font-size: xx-large; background-color: white;" onclick="plusDivs(1)">&#10095;</button></div>
-            </div> 
+            <div><button  style=" margin-left: 20px; border: none; font-size: xx-large; background-color: black; color: white;" onclick="plusDivs(1)">&#10095;</button></div>
+        </div> 
         <div id="signdiv" class="modal">
             <div class="container">
                 <div style="display: flex; justify-content: right; height: 5vh; padding-right: 5px;">
@@ -70,7 +89,60 @@
                         <button type="submit" class="signbtn">Sign In</button>
                     </div> 
                 </div> 
-        </div>
+            </div>
+            <div class="Introduction">
+                <div class="title">
+                    Welcome to Friend's Hotel
+                </div>
+                <div class="description">
+                    Friends' hotel is located in the immaculate area of Thamel, Kathmandu is a hotel established in 2000. 
+                    Friends' Hotel is one the most reputed hotels in Kathmandu and has proudly built its reputation in hospitality and 
+                    service throughout its 22 years of operation. 
+                    <br/>
+                    The hotel is close to the cities famous historical attractions. Friend's Hotel provides very reasonable rate compared
+                    to the hospitality service it provides. Friend's Hotel is re-knowed to be popular with friends night outs and hangout.
+                    Hotel is located in the tourist spot which provides all the facilities required by the tourist. 
+                </div>
+                <div class="facilities">
+                    Facilities provided by our Hotel
+                </div>
+                <div class="facilitiespoint">
+                    <ul>
+                        <li>
+                            Comfortable suite, single, double and triple rooms
+                        </li>
+                        <li>
+                            Located in a serene and peaceful environment in the heart of the busy hub of kathmandu
+                        </li>
+                        <li>
+                            Quick check in service
+                        </li>
+                        <li>
+                            Daily housekeeping, laundry and cleaning services 
+                        </li>
+                        <li>
+                            Designated Smoking and Non smoking area 
+                        </li>
+                        <li>
+                            Bar with unlimited choice of International and Nepali Drinks
+                        </li>
+                        <li>
+                            Free WIFI
+                        </li>
+                    </ul>
+                </div>
+                <div class="title">
+                    Honoured member of
+                </div>
+                <div>
+                    <img src="images/Han.jpg" style="width: 20%;" /> &nbsp;
+                    <img src="images/NTB.jpg" style="width: 20%;" />
+                </div>
+            </div>
+            
+            <footer>
+                <p>Friends' Hotel, Copyright &copy; 2022</p>
+            </footer>
         <script>
              function signupvalidate(){
                 signform = document.getElementById('signupform'); 
