@@ -27,9 +27,9 @@
                         <span onclick="document.getElementById('signdiv').style.display='none'"; class="closesign">+</span>
                     </div>    
                     <div class="button_sign">
-                        <span id="signinstyle" onclick="document.getElementById('signin').style.display='block';document.getElementById('signup').style.display='none'; document.getElementById('signinstyle').style.color='white'; document.getElementById('signupstyle').style.color='black'">Sign-in</span>
+                        <span id="signinstyle" onclick="document.getElementById('signin').style.display='block';document.getElementById('signup').style.display='none'; document.getElementById('signinstyle').style.color='#404040'; document.getElementById('signupstyle').style.color='black'">Sign-in</span>
                         <span style=" font-size:xx-large"> &nbsp; | &nbsp;</span>
-                        <span id="signupstyle" onclick="document.getElementById('signup').style.display='block'; document.getElementById('signin').style.display='none'; document.getElementById('signupstyle').style.color='white'; document.getElementById('signinstyle').style.color='black'">Sign-up</span>
+                        <span id="signupstyle" onclick="document.getElementById('signup').style.display='block'; document.getElementById('signin').style.display='none'; document.getElementById('signupstyle').style.color='#404040'; document.getElementById('signinstyle').style.color='black'">Sign-up</span>
                     </div>
                         <hr>
                     <div id="signup">
@@ -60,151 +60,329 @@
                 </div> 
             </div>
             <div class="Roombody">
-                <div class="subroom">
+                <div class="subroom" style="margin-bottom: 7px;">
                     <div class="roomimg">
                         <img src="images/suite.jpeg" width="100%"; height="100%"  />
                     </div>
                     <div class="descrip">
-                        <div style="font-style: italic ;font-family: sans-serif; font-size: 27px; font-weight: bold; text-decoration: underline; height: 20%;">
+                        <div style="font-style: italic ;font-family: sans-serif; font-size: 25px; font-weight: bold; text-decoration: underline; height: 20%;">
                             Exclusive Suite
                         </div>
-                        <div style="font-size: 20px; font-family: Josefin Sans ; font-weight: bold; " >
-                            <table style="width: 100%; padding: 5px;">
-                                <tr>
-                                    <td>Room_size:80m<sup>2</sup> </td>
-                                    <td>Price/Night:7000RS </td>
-                                </tr>
-                                <tr>
-                                    <td>Extra_Bed_on_Request</td>
-                                    <td>Private_Balcony</td>
-                                </tr>
-                                <tr >
-                                    <td colspan="2"  >
-                                        <button style="float: right; font-size: 18px; width: 20%; height: 35px ; background-color: black; color: white; cursor: pointer;">
-                                            Book Room
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
+                        <div style="font-size: 18px; font-family: Josefin Sans ; font-weight: bold; " >
+                            Price\Night: 9000RS <br/>
+                            Double Bed
                         </div>
+                        <div style="color: green;">   
+                            &#x2713;72m² &#x2713;View &#x2713;Air conditioning &#x2713;Ensuite bathroom &#x2713;Flat-screen TV &#x2713;socket near the bed &#x2713;Cleaning products &#x2713;Tile/marble floor
+                            &#x2713;Toilet &#x2713;Bath or shower &#x2713;Extra bed on request
+                        </div>
+                        <button onclick="document.getElementById('Suite').style.display='block'" style="float: right; font-size: 18px; width: 20%; height: 35px ; background-color: black; color: white; cursor: pointer; margin-top: 15px;">
+                            Book Room
+                        </button>
                     </div>
                 </div>
-                <div class="subroom">
+                <div class="subroom" style="margin-bottom: 7px;">
                     <div class="roomimg">
-                        <img src="images/suite.jpeg" width="100%"; height="100%"  />
+                        <img src="images/deluxe.jpg" width="100%"; height="100%"  />
                     </div>
                     <div class="descrip">
-                        <div style="font-style: italic ;font-family: sans-serif; font-size: 27px; font-weight: bold; text-decoration: underline; height: 20%;">
-                            Exclusive Suite
+                        <div style="font-style: italic ;font-family: sans-serif; font-size: 25px; font-weight: bold; text-decoration: underline; height: 20%;">
+                            Deluxe Room
                         </div>
-                        <div style="font-size: 20px; font-family: Josefin Sans ; font-weight: bold; " >
-                            <table style="width: 100%; padding: 5px;">
-                                <tr>
-                                    <td>Room_size:80m<sup>2</sup> </td>
-                                    <td>Price/Night:7000RS </td>
-                                </tr>
-                                <tr>
-                                    <td>Extra_Bed_on_Request</td>
-                                    <td>Private_Balcony</td>
-                                </tr>
-                                <tr >
-                                    <td colspan="2"  >
-                                        <button style="float: right; font-size: 18px; width: 20%; height: 35px ; background-color: black; color: white; cursor: pointer;">
-                                            Book Room
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
+                        <div style="font-size: 18px; font-family: Josefin Sans ; font-weight: bold; " >
+                            Price\Night: 7000RS <br/>
+                            Double Bed
                         </div>
+                        <div style="color: green;">
+                            &#x2713;60m² &#x2713;View &#x2713;Air conditioning &#x2713;Ensuite bathroom &#x2713;Flat-screen TV &#x2713;socket near the bed &#x2713;Cleaning products &#x2713;Tile/marble floor
+                            &#x2713;Toilet &#x2713;Bath or shower &#x2713;Extra bed on request
+                        </div>
+                        <button onclick="document.getElementById('Duelex').style.display='block'" style="float: right; font-size: 18px; width: 20%; height: 35px ; background-color: black; color: white; cursor: pointer;margin-top: 15px;">
+                            Book Room
+                        </button>
                     </div>
                 </div>
-                <div class="subroom">
+                <div class="subroom" style="margin-bottom: 7px;">
                     <div class="roomimg">
-                        <img src="images/suite.jpeg" width="100%"; height="100%"  />
+                        <img src="images/family-room.jpg" width="100%"; height="100%"  />
                     </div>
                     <div class="descrip">
-                        <div style="font-style: italic ;font-family: sans-serif; font-size: 27px; font-weight: bold; text-decoration: underline; height: 20%;">
-                            Exclusive Suite
+                        <div style="font-style: italic ;font-family: sans-serif; font-size: 25px; font-weight: bold; text-decoration: underline; height: 20%;">
+                            Family Room
                         </div>
-                        <div style="font-size: 20px; font-family: Josefin Sans ; font-weight: bold; " >
-                            <table style="width: 100%; padding: 5px;">
-                                <tr>
-                                    <td>Room_size:80m<sup>2</sup> </td>
-                                    <td>Price/Night:7000RS </td>
-                                </tr>
-                                <tr>
-                                    <td>Extra_Bed_on_Request</td>
-                                    <td>Private_Balcony</td>
-                                </tr>
-                                <tr >
-                                    <td colspan="2"  >
-                                        <button style="float: right; font-size: 18px; width: 20%; height: 35px ; background-color: black; color: white; cursor: pointer;">
-                                            Book Room
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
+                        <div style="font-size: 18px; font-family: Josefin Sans ; font-weight: bold; " >
+                            Price\Night: 5000RS <br/>
+                            1 Double bed 2 Single Bed
                         </div>
+                        <div style="color: green;">
+                            &#x2713;45m² &#x2713;View &#x2713;Air conditioning &#x2713;Ensuite bathroom &#x2713;Flat-screen TV &#x2713;socket near the bed &#x2713;Cleaning products &#x2713;Tile/marble floor
+                            &#x2713;Toilet &#x2713;Bath or shower <span style="color: red">&#x292C;Extra bed on request
+                        </div>
+                        <button onclick="document.getElementById('Family').style.display='block'" style="float: right; font-size: 18px; width: 20%; height: 35px ; background-color: black; color: white; cursor: pointer;margin-top: 15px;">
+                            Book Room
+                        </button>
                     </div>
                 </div>
-                <div class="subroom">
+                <div class="subroom" style="margin-bottom: 7px;">
                     <div class="roomimg">
-                        <img src="images/suite.jpeg" width="100%"; height="100%"  />
+                        <img src="images/doubleroom.jpg" width="100%"; height="100%"  />
                     </div>
                     <div class="descrip">
-                        <div style="font-style: italic ;font-family: sans-serif; font-size: 27px; font-weight: bold; text-decoration: underline; height: 20%;">
-                            Exclusive Suite
+                        <div style="font-style: italic ;font-family: sans-serif; font-size: 25px; font-weight: bold; text-decoration: underline; height: 20%;">
+                            Double Bed Room
                         </div>
-                        <div style="font-size: 20px; font-family: Josefin Sans ; font-weight: bold; " >
-                            <table style="width: 100%; padding: 5px;">
-                                <tr>
-                                    <td>Room_size:80m<sup>2</sup> </td>
-                                    <td>Price/Night:7000RS </td>
-                                </tr>
-                                <tr>
-                                    <td>Extra_Bed_on_Request</td>
-                                    <td>Private_Balcony</td>
-                                </tr>
-                                <tr >
-                                    <td colspan="2"  >
-                                        <button style="float: right; font-size: 18px; width: 20%; height: 35px ; background-color: black; color: white; cursor: pointer;">
-                                            Book Room
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
+                        <div style="font-size: 18px; font-family: Josefin Sans ; font-weight: bold; " >
+                            Price\Night: 5000RS <br/>
+                            1 Double bed 2 Single Bed
                         </div>
+                        <div style="color: green;">
+                            &#x2713;35m² &#x2713;View &#x2713;Air conditioning &#x2713;Ensuite bathroom &#x2713;Flat-screen TV <span style="color: red">&#x292C;Socket near the bed</span> &#x2713;Cleaning products <span style="color: red">&#x292C;Tile/marble floor</span>
+                            &#x2713;Toilet &#x2713;Bath or shower <span style="color: red">&#x292C;Extra bed on request
+                        </div>
+                        <button onclick="document.getElementById('Double').style.display='block'"; style="float: right; font-size: 18px; width: 20%; height: 35px ; background-color: black; color: white; cursor: pointer;margin-top: 15px;">
+                            Book Room
+                        </button>
                     </div>
                 </div>
-                <div class="subroom">
+                <div class="subroom" style="margin-bottom: 7px;">
                     <div class="roomimg">
-                        <img src="images/suite.jpeg" width="100%"; height="100%"  />
+                        <img src="images/single.jpg" width="100%"; height="100%"  />
                     </div>
                     <div class="descrip">
-                        <div style="font-style: italic ;font-family: sans-serif; font-size: 27px; font-weight: bold; text-decoration: underline; height: 20%;">
-                            Exclusive Suite
+                        <div style="font-style: italic ;font-family: sans-serif; font-size: 25px; font-weight: bold; text-decoration: underline; height: 20%;">
+                            Single Bed Room
                         </div>
-                        <div style="font-size: 20px; font-family: Josefin Sans ; font-weight: bold; " >
-                            <table style="width: 100%; padding: 5px;">
-                                <tr>
-                                    <td>Room_size:80m<sup>2</sup> </td>
-                                    <td>Price/Night:7000RS </td>
-                                </tr>
-                                <tr>
-                                    <td>Extra_Bed_on_Request</td>
-                                    <td>Private_Balcony</td>
-                                </tr>
-                                <tr >
-                                    <td colspan="2"  >
-                                        <button style="float: right; font-size: 18px; width: 20%; height: 35px ; background-color: black; color: white; cursor: pointer;">
-                                            Book Room
-                                        </button>
-                                    </td>
-                                </tr>
-                            </table>
+                        <div style="font-size: 18px; font-family: Josefin Sans ; font-weight: bold; " >
+                            Price\Night: 5000RS <br/>
+                            1 Single Bed
                         </div>
+                        <div style="color: green;">
+                            &#x2713;20m² <span style="color: red">&#x292C;View</span> &#x2713;Air conditioning <span style="color: red">&#x292C;Ensuite bathroom</span> &#x2713;Flat-screen TV <span style="color: red">&#x292C;Socket near the bed</span> &#x2713;Cleaning products <span style="color: red">&#x292C;Tile/marble floor</span>
+                            &#x2713;Toilet &#x2713;Bath or shower <span style="color: red">&#x292C;Extra bed on request
+                        </div>
+                        <button onclick="document.getElementById('Single').style.display='block'"; style="float: right; font-size: 18px; width: 20%; height: 35px ; background-color: black; color: white; cursor: pointer;margin-top: 15px;">
+                            Book Room
+                        </button>
                     </div>
                 </div>
             </div>
+            <div id="Suite" class="modal2">
+                <div class="RoomBook" style="margin-top: 100px; background-image: url(images/suite.jpeg); background-size: cover; ">
+                    <div style="display: flex; justify-content: right; height: 5vh; padding-right: 5px; margin: 3px;">
+                        <span onclick="document.getElementById('Suite').style.display='none'"; class="closesign">+</span>
+                    </div>   
+                    <h2 style="padding-left: 10px; text-decoration: underline;">Exclusive Suite</h2>
+                    <div style=" margin: 10px; height: 62vh; background-color: rgba(255, 255, 255, 0.4);">
+                        <form id="SuiteRoom" action="" method="POST">
+                            <fieldset>
+                                <legend>Person Details</legend>
+                                <label for="name">Username:</label>   <br />
+                                    <input type="text" class="PD-name" name="username" id="name" required autofocus placeholder="Your username"pattern="[a-zA-Z]{3,}" 
+                                    title="please enter in more than three letters"> <br />
+            
+                                <label for="email">Email:</label> <br />
+                                    <input type="text" name="email" id="email" required placeholder="Your email" pattern="[a-zA-Z]{3,}@[a-zA-A]{3.}[.]{1}[a-zA-Z]{2,}" 
+                                    title="please enter in a valid email adress"> <br />
+            
+                                <label for="phone">Phone:</label> <br />
+                                    <input type="number" name="phone" id="phone" required 
+                                    placeholder="Your phone number" pattern="[0-9]{4}" title="please enter in a phone 
+                                    number in this format:#### ## ## ##"> <br />
+                                
+                            </fieldset>
+                            <br>
+                            <fieldset>
+                                <legend>Booking Details: </legend>
+                                    <label for="date">Booking date:</label>
+                                        <input id="date" type="date" name="date" min="2018-04-02" max="2020-12-30"> <br />
+                                <br>
+                                    <label for="numberofGuests"> Number Of Guests:</label>
+                                        <input id="numberofGuests" type="number" name="number of guests" min="1" max="5"> <br />
+                                
+                                <label for="balcony">Do you require Balcony?</label>
+                                    <input id="balcony" type="checkbox" name="balcony" value="yes" checked>
+                                <br>
+                                <input type="submit" value="Submit">
+            
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="Duelex" class="modal2">
+                <div class="RoomBook" style="margin-top: 100px; background-image: url(images/deluxe.jpg); background-size: cover; ">
+                    <div style="display: flex; justify-content: right; height: 5vh; padding-right: 5px; margin: 3px;">
+                        <span onclick="document.getElementById('Duelex').style.display='none'"; class="closesign">+</span>
+                    </div>   
+                    <h2 style="padding-left: 10px; text-decoration: underline;">Duelex Room</h2>
+                    <div style=" margin: 10px; height: 62vh; background-color: rgba(255, 255, 255, 0.4);">
+                        <form id="SuiteRoom" action="" method="POST">
+                            <fieldset>
+                                <legend>Person Details</legend>
+                                <label for="name">Username:</label>   <br />
+                                    <input type="text" class="PD-name" name="username" id="name" required autofocus placeholder="Your username"pattern="[a-zA-Z]{3,}" 
+                                    title="please enter in more than three letters"> <br />
+            
+                                <label for="email">Email:</label> <br />
+                                    <input type="text" name="email" id="email" required placeholder="Your email" pattern="[a-zA-Z]{3,}@[a-zA-A]{3.}[.]{1}[a-zA-Z]{2,}" 
+                                    title="please enter in a valid email adress"> <br />
+            
+                                <label for="phone">Phone:</label> <br />
+                                    <input type="number" name="phone" id="phone" required 
+                                    placeholder="Your phone number" pattern="[0-9]{4}" title="please enter in a phone 
+                                    number in this format:#### ## ## ##"> <br />
+                                
+                            </fieldset>
+                            <br>
+                            <fieldset>
+                                <legend>Booking Details: </legend>
+                                    <label for="date">Booking date:</label>
+                                        <input id="date" type="date" name="date" min="2018-04-02" max="2020-12-30"> <br />
+                                <br>
+                                    <label for="numberofGuests"> Number Of Guests:</label>
+                                        <input id="numberofGuests" type="number" name="number of guests" min="1" max="5"> <br />
+                                
+                                <label for="balcony">Do you require Balcony?</label>
+                                    <input id="balcony" type="checkbox" name="balcony" value="yes" checked>
+                                <br>
+                                <input type="submit" value="Submit">
+            
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="Family" class="modal2">
+                <div class="RoomBook" style="margin-top: 100px; background-image: url(images/family-room.jpg); background-size: cover; ">
+                    <div style="display: flex; justify-content: right; height: 5vh; padding-right: 5px; margin: 3px;">
+                        <span onclick="document.getElementById('Family').style.display='none'"; class="closesign">+</span>
+                    </div>   
+                    <h2 style="padding-left: 10px; text-decoration: underline;">Family Room</h2>
+                    <div style=" margin: 10px; height: 62vh; background-color: rgba(255, 255, 255, 0.4);">
+                        <form id="SuiteRoom" action="" method="POST">
+                            <fieldset>
+                                <legend>Person Details</legend>
+                                <label for="name">Username:</label>   <br />
+                                    <input type="text" class="PD-name" name="username" id="name" required autofocus placeholder="Your username"pattern="[a-zA-Z]{3,}" 
+                                    title="please enter in more than three letters"> <br />
+            
+                                <label for="email">Email:</label> <br />
+                                    <input type="text" name="email" id="email" required placeholder="Your email" pattern="[a-zA-Z]{3,}@[a-zA-A]{3.}[.]{1}[a-zA-Z]{2,}" 
+                                    title="please enter in a valid email adress"> <br />
+            
+                                <label for="phone">Phone:</label> <br />
+                                    <input type="number" name="phone" id="phone" required 
+                                    placeholder="Your phone number" pattern="[0-9]{4}" title="please enter in a phone 
+                                    number in this format:#### ## ## ##"> <br />
+                                
+                            </fieldset>
+                            <br>
+                            <fieldset>
+                                <legend>Booking Details: </legend>
+                                    <label for="date">Booking date:</label>
+                                        <input id="date" type="date" name="date" min="2018-04-02" max="2020-12-30"> <br />
+                                <br>
+                                    <label for="numberofGuests"> Number Of Guests:</label>
+                                        <input id="numberofGuests" type="number" name="number of guests" min="1" max="5"> <br />
+                                
+                                <label for="balcony">Do you require Balcony?</label>
+                                    <input id="balcony" type="checkbox" name="balcony" value="yes" checked>
+                                <br>
+                                <input type="submit" value="Submit">
+            
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="Double" class="modal2">
+                <div class="RoomBook" style="margin-top: 100px; background-image: url(images/family-room.jpg); background-size: cover; ">
+                    <div style="display: flex; justify-content: right; height: 5vh; padding-right: 5px; margin: 3px;">
+                        <span onclick="document.getElementById('Double').style.display='none'"; class="closesign">+</span>
+                    </div>   
+                    <h2 style="padding-left: 10px; text-decoration: underline;">Double Bed Room</h2>
+                    <div style=" margin: 10px; height: 62vh; background-color: rgba(255, 255, 255, 0.4);">
+                        <form id="SuiteRoom" action="" method="POST">
+                            <fieldset>
+                                <legend>Person Details</legend>
+                                <label for="name">Username:</label>   <br />
+                                    <input type="text" class="PD-name" name="username" id="name" required autofocus placeholder="Your username"pattern="[a-zA-Z]{3,}" 
+                                    title="please enter in more than three letters"> <br />
+            
+                                <label for="email">Email:</label> <br />
+                                    <input type="text" name="email" id="email" required placeholder="Your email" pattern="[a-zA-Z]{3,}@[a-zA-A]{3.}[.]{1}[a-zA-Z]{2,}" 
+                                    title="please enter in a valid email adress"> <br />
+            
+                                <label for="phone">Phone:</label> <br />
+                                    <input type="number" name="phone" id="phone" required 
+                                    placeholder="Your phone number" pattern="[0-9]{4}" title="please enter in a phone 
+                                    number in this format:#### ## ## ##"> <br />
+                                
+                            </fieldset>
+                            <br>
+                            <fieldset>
+                                <legend>Booking Details: </legend>
+                                    <label for="date">Booking date:</label>
+                                        <input id="date" type="date" name="date" min="2018-04-02" max="2020-12-30"> <br />
+                                <br>
+                                    <label for="numberofGuests"> Number Of Guests:</label>
+                                        <input id="numberofGuests" type="number" name="number of guests" min="1" max="5"> <br />
+                                
+                                <label for="balcony">Do you require Balcony?</label>
+                                    <input id="balcony" type="checkbox" name="balcony" value="yes" checked>
+                                <br>
+                                <input type="submit" value="Submit">
+            
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div id="Single" class="modal2">
+                <div class="RoomBook" style="margin-top: 100px; background-image: url(images/single.jpg); background-size: cover; ">
+                    <div style="display: flex; justify-content: right; height: 5vh; padding-right: 5px; margin: 3px;">
+                        <span onclick="document.getElementById('Single').style.display='none'"; class="closesign">+</span>
+                    </div>   
+                    <h2 style="padding-left: 10px; text-decoration: underline;">Single Bed Room</h2>
+                    <div style=" margin: 10px; height: 62vh; background-color: rgba(255, 255, 255, 0.4);">
+                        <form id="SuiteRoom" action="" method="POST">
+                            <fieldset>
+                                <legend>Person Details</legend>
+                                <label for="name">Username:</label>   <br />
+                                    <input type="text" class="PD-name" name="username" id="name" required autofocus placeholder="Your username"pattern="[a-zA-Z]{3,}" 
+                                    title="please enter in more than three letters"> <br />
+            
+                                <label for="email">Email:</label> <br />
+                                    <input type="text" name="email" id="email" required placeholder="Your email" pattern="[a-zA-Z]{3,}@[a-zA-A]{3.}[.]{1}[a-zA-Z]{2,}" 
+                                    title="please enter in a valid email adress"> <br />
+            
+                                <label for="phone">Phone:</label> <br />
+                                    <input type="number" name="phone" id="phone" required 
+                                    placeholder="Your phone number" pattern="[0-9]{4}" title="please enter in a phone 
+                                    number in this format:#### ## ## ##"> <br />
+                                
+                            </fieldset>
+                            <br>
+                            <fieldset>
+                                <legend>Booking Details: </legend>
+                                    <label for="date">Booking date:</label>
+                                        <input id="date" type="date" name="date" min="2018-04-02" max="2020-12-30"> <br />
+                                <br>
+                                    <label for="numberofGuests"> Number Of Guests:</label>
+                                        <input id="numberofGuests" type="number" name="number of guests" min="1" max="5"> <br />
+                                
+                                <label for="balcony">Do you require Balcony?</label>
+                                    <input id="balcony" type="checkbox" name="balcony" value="yes" checked>
+                                <br>
+                                <input type="submit" value="Submit">
+            
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <p>Friends' Hotel, Copyright &copy; 2022</p>
+            </footer>
     </body>
 </html>
