@@ -89,6 +89,7 @@
             cursor: pointer; 
             font-family: cursive; 
             background-color: #800000;
+            color: white;
         }
 
         .checkbutton:hover{
@@ -338,4 +339,11 @@
         #SuiteRoom{
             font-size: large;
             font-weight: bold;
+        }
+
+        /*contact us*/
+        .container2{
+                width: 90%;
+                margin: auto;
+                overflow: hidden;
         }
