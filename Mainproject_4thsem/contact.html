@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Friends Hotel | Contact Us
+        </title>
+        <link rel="stylesheet" href="homeStyle.css">
+    </head>
+    <body>
+        <div class="head" > 
+            <span style="color: red;">FRIENDS'</span>&nbsp;Hotel
+        </div>
+        
+            <nav>
+                <ul>
+                    <li> <a href="Home.html" ><button  >Home</button></a></li>      
+                    <li> <a href="Room.html"><button>Rooms</button></a></li>
+                    <li> <a href="aboutus.html"><button>About us</button></a></li>
+                    <li> <a href="contact.html" ><button class="active" style="color: red;">Contact us</button></a></li>
+                    <li> <a><button onclick="document.getElementById('signdiv').style.display='block'">Sign in</button></a></li>
+                </ul>
+            </nav>
+        <div class="container">
+            <div style="text-align:center">
+                <h2>Contact Us</h2>
+                <p>Swing by for a cup of coffee, or leave us a message:</p>
+            </div>
+            <aside id="sidebar1">
+                <div class="column1">
+                    <form action="/action_page.php">
+                        <label for="fname">First name:</label>  
+                            <input type="text" name="username" id="name" required placeholder="Enter your first name" > <br>
+                  
+                        <label for="lname">Last name:</label>  
+                            <input type="text" name="username" id="name" required placeholder="Enter your last name" > <br>
+                  
+                        <label for="email">Email:</label>
+                           <input type="email" name="email" id="email" required placeholder="Your email" > <br>
+                  
+                        <label for="country">Intention of contacting</label>
+                           <select id="country" name="Place">
+                                <option value="General inquiry">General inquiry</option>
+                                <option value="Report issue">Report issue</option>
+                                <option value="Support Friends Hotel">Support Friends Hotel</option>
+                                <option value="Other">Other(Please specify in attatchment)</option>
+                            </select> <br>
+                    
+                        <label for="subject">Subject:</label>
+                            <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+                        <input type="submit" value="Submit"> <br>
+                    </form>
+                </div>
+            </aside>
+        </div>
+
+        <footer>
+            <p>Friends Hotel, Copyright &copy; 2017</p>
+        </footer>
+    </body>
+</html>    
