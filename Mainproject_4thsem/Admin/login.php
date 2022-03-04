@@ -3,8 +3,8 @@
     Global $unathorized;
     if($_POST){
 
-        $username = $_POST['Adname'];
-        $password = $_POST['Adpassword'];
+        $username = $_REQUEST['Adname'];
+        $password = $_REQUEST['Adpassword'];
         $query = $conn->query("SELECT * FROM `admin` WHERE `A_name` = '$username' && `password` = '$password'") or die(mysqli_error());
 		$fetch = $query->fetch_array();
 		$row = $query->num_rows;
@@ -12,7 +12,7 @@
 		if($row > 0){
 			session_start();
 			$_SESSION['admin_id'] = $fetch['admin_id'];
-			header('location:logout.php');
+			header('location:admin.php');
 		}else{
 			$unathorized = "You ain't admin, imposter"  ;
 		}

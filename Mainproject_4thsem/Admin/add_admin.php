@@ -1,48 +1,84 @@
 <?php include '../db_configure.php' ?>
 <?php include 'logout.php' ?>
+<?php
+    global $adminerror;
+    if($_POST){
+        $username = $_REQUEST['Adname'];
+        $password = $_REQUEST['Adpassword'];
+        $select = "SELECT * FROM `admin` WHERE A_name = '$username'";
+        $check = mysqli_query($conn,$select);
+
+        if(mysqli_num_rows($check)>0) {
+            $adminerror = 'Admin already exists';
+        }else{
+            $conn->query("INSERT INTO `admin` (A_name, password) VALUES('$username', '$password')") or die(mysqli_error());
+            header("location:admin.php");
+        }
+    }
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Document</title>
     </head>
+    <style>
+        body{
+            background-color:	#D3D3D3;
+        }
+        .tablein{
+            width: 25%;
+            margin: 0 auto;
+        }
+        .table{
+            border-collapse: collapse;
+            border: 2px solid black;
+            width:100%;
+            background-color: white;
+            font-size: 18px;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
+        }
+        .ed{
+            width: 70px;
+            background-color: blue;
+            font-weight:bold;
+            font-size: 18px;
+            padding:3px;
+            border-radius:5px;
+        }
+    </style>
+    <script>
+            function Showpassword() {
+            var x = document.getElementById("Adpassword");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+            }
+    </script>
     <body>
-        <table id = "table" class = "tablestyle">
-            <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Password</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php  
-                    $query = $conn->query("SELECT * FROM `admin`") or die(mysqli_error());
-                    while($fetch = $query->fetch_array()){
-                ?>
-                <tr>
-                    <td ><?php echo $fetch['A_name']?></td>
-                    <td><?php echo ($fetch['password'])?></td>
-                    <td><button class="ed"> Edit</button> <button class="ed"> Delete</button></td>
-                </tr>
-                <?php
-                    }
-                ?>
-            </tbody>
-            </table>
-            <script type = "text/javascript">
-                $(document).ready(function(){
-                    $("#table").DataTable();
-                });
-            </script>
+        <div class="tablein" style="margin-top:10px;">
+            <div style="font-size:18px;margin:10px 0px 10px;">
+                Create Admin Account
+            </div> 
+            <div class="table">
+            <p style="color:red; font-size:16px;"> <?= $adminerror ?> </p>
+            <form method="POST"  >
+                        <label>Admin Name </label> <br/>
+                        <input class="inputmargin" type= "text" id="Adname" name="Adname" /> <br/>
+                        <label>Password </label><br/>
+                        <input class="inputmargin" type="password" id="Adpassword" name="Adpassword" />
+                        <input type="checkbox" style="display:none" name="pass"  ></button>
+                        <i class="fa fa-eye" id="passeye" for="pass" onclick=" Showpassword();"></i> <br/>
+
+                        <input style=" font-size: 18px;border-radius: 5px ;width: 120px; height: 35px ; background-color: black; color: white; cursor: pointer; margin:6px" type="submit" name="Add Admin" value="Add Admin" />
+                    </form>
+            </div>
+        </div>
     </body>
 </html>
-<?php
-
-    
-
-?>
