@@ -1,3 +1,4 @@
+<?php include 'signmodal.php' ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,15 +11,15 @@
     </head>
     <body>
         <div class="head" > 
-            <span style="color: red;">FRIENDS'</span>&nbsp;Hotel
+        <a href="home.php" style="color:black"><span style="color: red;">FRIENDS'</span>&nbsp;Hotel </a>
         </div>
         
             <nav>
                 <ul>
                     <li> <a href="#" ><button class="active" style="color: red;">Home</button></a></li>      
-                    <li> <a href="Room.html"><button>Rooms</button></a></li>
-                    <li> <a href="aboutus.html"><button>About us</button></a></li>
-                    <li> <a href="contact.html"><button>Contact us</button></a></li>
+                    <li> <a href="room.php"><button>Rooms</button></a></li>
+                    <li> <a href="about.php"><button>About us</button></a></li>
+                    <li> <a href="Contact.php"><button>Contact us</button></a></li>
                     <li> <a><button onclick="document.getElementById('signdiv').style.display='block'">Sign in</button></a></li>
                 </ul>
             </nav>
@@ -52,44 +53,7 @@
             
             <div><button  style=" margin-left: 20px; border: none; font-size: xx-large; background-color: black; color: white;" onclick="plusDivs(1)">&#10095;</button></div>
         </div> 
-        <div id="signdiv" class="modal">
-            <div class="container">
-                <div style="display: flex; justify-content: right; height: 5vh; padding-right: 5px;">
-                    <span onclick="document.getElementById('signdiv').style.display='none'"; class="closesign">+</span>
-                </div>    
-                    <div class="button_sign">
-                    <span id="signinstyle" onclick="document.getElementById('signin').style.display='block';document.getElementById('signup').style.display='none'; document.getElementById('signinstyle').style.color='#404040'; document.getElementById('signupstyle').style.color='black'">Sign-in</span>
-                    <span style=" font-size:xx-large"> &nbsp; | &nbsp;</span>
-                    <span id="signupstyle" onclick="document.getElementById('signup').style.display='block'; document.getElementById('signin').style.display='none'; document.getElementById('signupstyle').style.color='#404040'; document.getElementById('signinstyle').style.color='black'">Sign-up</span>
-                    </div>
-                    <hr>
-                    <div id="signup">
-                        <form id="signupform" action="test_signup.php" method="POST" onsubmit="event.preventDefault(); signupvalidate()" >
-                            <label for="name"><b>Full Name</b></label> <br/>
-                            <input class="inputstyle" type="text" placeholder="Enter your name" name="name" id="name" > <br>
-                            <span style="color: red; display: none; font-size: small; margin-left: 5px ;" id="for_name" >User name cannot be empty <br/></span> 
-                            <label for="email"><b>Email</b></label> <br/>
-                            <input  class="inputstyle" type="text" placeholder="Enter email" name="email" id="email" > <br>
-                            <span style="color: red; display: none; font-size: small; margin-left: 5px ;" class="valid" id="for_email" >Email cannot be empty <br/></span> 
-                            <label for="psw"><b>Password</b></label> <br/>
-                            <input class="inputstyle" type="password" placeholder="Enter password" name="psw" id="psw"  > <br>
-                            <span style="color: red; display: none; font-size: small; margin-left: 5px ;" class="valid" id="for_password">Password cannot be empty <br/></span> 
-                            <span style="color: red; display: none; font-size: small; margin-left: 5px ;"  class="valid" id="password_length">Password must be of atleast 8 characters <br/></span> 
-                            <label for="pswconfirm"><b>Confirm Password</b></label> <br/>
-                            <input class="inputstyle" type="password" placeholder="Confirm password" name="pswcon" id="pswcon"  > <br> 
-                            <span style="color: red; display: none; font-size: small; margin-left: 5px ;" class="valid" id="for_password">Password cannot be empty <br/></span>
-                            <button type="submit" name="submit" class="signbtn" >Sign Up</button>
-                        </form>
-                    </div>
-                    <div id="signin">
-                        <label for="email"><b>Email</b></label> <br/>
-                        <input class="inputstyle" type="text" placeholder="Enter email" name="email" > <br>
-                        <label for="psw"><b>Password</b></label> <br/>
-                        <input class="inputstyle" type="password" placeholder="Enter password" name="psw"  > <br> 
-                        <button type="submit" class="signbtn">Sign In</button>
-                    </div> 
-                </div> 
-            </div>
+        
             <div class="Introduction">
                 <div class="title">
                     Welcome to Friend's Hotel
@@ -144,28 +108,6 @@
                 <p>Friends' Hotel, Copyright &copy; 2022</p>
             </footer>
         <script>
-             function signupvalidate(){
-                signform = document.getElementById('signupform'); 
-                name = document.getElementById('name').value;
-                email= document.getElementById('email').value;
-                password= document.getElementById('psw').value;
-                conpassword= document.getElementById('pswcon').value;
-                namerror= document.getElementById('for_name');
-                emailerror= document.getElementById('for_email');
-                isValidate = true;
-            
-                if(name == ''){
-                    namerror.style.display = "block";
-                    isValidate = false;
-                }
-                console.log("hello");
-                
-                if(isValidate){
-                    signform.submit();
-                }
-
-            }
-
             var slideIndex = 1;
             showDivs(slideIndex);
 

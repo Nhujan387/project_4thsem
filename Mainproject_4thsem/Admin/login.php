@@ -10,8 +10,6 @@
 		$row = $query->num_rows;
 		
 		if($row > 0){
-			session_start();
-			$_SESSION['admin_id'] = $fetch['admin_id'];
 			header('location:admin.php');
 		}else{
 			$unathorized = "You ain't admin, imposter"  ;

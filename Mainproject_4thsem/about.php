@@ -1,3 +1,4 @@
+<?php include "signmodal.php" ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,15 +9,15 @@
     </head>
     <body>
         <div class="head" > 
-            <span style="color: red;">FRIENDS'</span>&nbsp;Hotel
+           <a href="home.php" style="color:black"> <span style="color: red;">FRIENDS'</span>&nbsp;Hotel </a>
         </div>
         
             <nav>
                 <ul>
-                    <li> <a href="Home.html" ><button >Home</button></a></li>      
-                    <li> <a href="Room.html"><button>Rooms</button></a></li>
-                    <li> <a href="aboutus.html"><button class="active" style="color: red;">About us</button></a></li>
-                    <li> <a href="contact.html"><button>Contact us</button></a></li>
+                    <li> <a href="home.php" ><button >Home</button></a></li>      
+                    <li> <a href="room.php"><button>Rooms</button></a></li>
+                    <li> <a href="about.php"><button class="active" style="color: red;">About us</button></a></li>
+                    <li> <a href="Contact.php"><button>Contact us</button></a></li>
                     <li> <a><button onclick="document.getElementById('signdiv').style.display='block'">Sign in</button></a></li>
                 </ul>
             </nav>
