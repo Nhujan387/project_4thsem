@@ -5,7 +5,7 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="style.css" />
-        <title>Document</title>
+        <title>Friends Hotel</title>
     </head>
     <style>
         .adbox{
@@ -24,7 +24,7 @@
             width:100%;
             font-size: 18px;
             background-color: white;
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,1);
         }
         th{
             border: 2px solid black;

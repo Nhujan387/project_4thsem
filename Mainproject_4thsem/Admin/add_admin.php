@@ -24,7 +24,7 @@
     <head>
         <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>Document</title>
+        <title>Friends' Hotel</title>
     </head>
     <style>
         .adbox{
@@ -39,7 +39,6 @@
                 display:flex;
                 justify-content: center;
                 padding: 5px;
-                border-right:2px solid red;
             }
         ul{
             list-style-type:none;
@@ -57,7 +56,7 @@
                 margin: 3px;
             }
         .tablein{
-            width: 30%;
+            width: 35%;
             margin: 0 auto;
         }
         .table{
@@ -66,7 +65,9 @@
             width:100%;
             background-color: white;
             font-size: 18px;
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,1);
+            border-radius: 10px;
+            padding: 10px;
         }
         .ed{
             width: 70px;
@@ -75,6 +76,10 @@
             font-size: 18px;
             padding:3px;
             border-radius:5px;
+        }
+        .input{
+            width:88%;
+            font-size: 20px;
         }
     </style>
     <script>
@@ -107,13 +112,13 @@
                 <p style="color:red; font-size:16px;"> <?= $adminerror ?> </p>
                 <form method="POST"  >
                             <label>Admin Name </label> <br/>
-                            <input class="inputmargin" type= "text" id="Adname" name="Adname" /> <br/>
+                            <input class="input" type= "text" id="Adname" name="Adname" /> <br/>
                             <label>Password </label><br/>
-                            <input class="inputmargin" type="password" id="Adpassword" name="Adpassword" />
+                            <input class="input" type="password" id="Adpassword" name="Adpassword" />
                             <input type="checkbox" style="display:none" name="pass"  ></button>
                             <i class="fa fa-eye" id="passeye" for="pass" onclick=" Showpassword();"></i> <br/>
 
-                            <input style=" font-size: 18px;border-radius: 5px ;width: 120px; height: 35px ; background-color: black; color: white; cursor: pointer; margin:6px" type="submit" name="Add Admin" value="Add Admin" />
+                            <input style=" font-size: 18px;border-radius: 5px ;width: 120px; height: 35px ; background-color: black; color: white; cursor: pointer; margin-top: 5px;" type="submit" name="Add Admin" value="Add Admin" />
                         </form>
                 </div>
             </div>
