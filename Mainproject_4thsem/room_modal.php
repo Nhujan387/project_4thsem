@@ -31,29 +31,25 @@
             userName = document.getElementById('username').value;
             phone = document.getElementById('phone').value;
             checkin = document.getElementById('datein').value;
+            checkout = document.getElementById('dateout').value;
             userNameError = document.getElementById('username-error');
             phoneError = document.getElementById('phone-error');
             dateError = document.getElementById('datein-error');
+            dateoutError = document.getElementById('dateout-error');
             validate = true;
 
             if(userName.trim() == ""){
-                userNameError.innerHTML="Username cannot be EMPTY";
+                userNameError.innerHTML="Username required";
                 userNameError.style.display="block";
                 validate = false;
-            }else{
-                if(userName.length<3){
-                    userNameError.innerHTML="Username has less then 3 characters";
-                    userNameError.style.display="block";
-                    validate = false;
-                }
             }
            
             if(phone == ""){
-                phoneError.innerHTML="Phone number cannot be EMPTY";
+                phoneError.innerHTML="Phone number required";
                 phoneError.style.display="block";
                 validate = false;
             }else{
-                if(phone.length<=10){
+                if(phone.length<10){
                     phoneError.innerHTML="Phone number cannot be less than 10 digits";
                     phoneError.style.display="block";
                     validate = false;
@@ -72,6 +68,14 @@
                 validate = false;
             }
 
+            if(checkout == ''){
+                dateoutError.innerHTML="Check-out date required";
+                dateoutError.style.display="block";
+                validate = false;
+            }
+            if(validate){
+                document.getElementById("SuiteRoom").submit();
+            }
         }
     </script>
     </head>
@@ -108,15 +112,15 @@
                         <form id="SuiteRoom" action="" method="POST" onsubmit="event.preventDefault(); validateDetails()">
                             <fieldset class="room-fieldset">
                             <legend>Book</legend>
-                                <label style="font-size:24px;text-decoration:underline;"><?= $result['catagory_name']; }?></label> <br>
+                                <p style="font-size:24px;text-decoration:underline; margin-bottom:5px; "><?= $result['catagory_name']; }?></p> 
                                 <label for="username">Full Name:</label>   <br />
-                                    <input type="text" class="PD-name" name="username" id="username" placeholder="Your username"pattern="[a-zA-Z]{3,}" 
+                                    <input type="text" class="PD-name" name="username" id="username" placeholder="Your full name"
                                     title="please enter in more than three letters"> 
                                     <div id="username-error" class="error" style="font-size:14px;"></div>
             
-                                <label for="phone">Phone:</label> <br />
+                                <label for="phone">Contact No:</label> <br />
                                     <input type="number" name="phone" id="phone" class="PD-phone"
-                                    placeholder="Your phone number" pattern="[0-9]{4}"> 
+                                    placeholder="Your phone number" > 
                                     <div id="phone-error" class="error" style="font-size:14px;"></div>
 
                                     <div class="BD-chck">    
@@ -127,8 +131,8 @@
                                         </div>    
                                         <div class="BD-chck2">
                                             <label for="date">Checkout date:</label>
-                                            <input id="dateout" class="BD-date" type="date" name="dateout" min="2022-03-20">
-                                            <div id="date-error" class="error"></div> <br />
+                                            <input id="dateout" class="BD-date" type="date" name="dateout" min="2022-03-20" >
+                                            <div id="dateout-error" class="error" style="font-size:14px;"></div> <br />
                                         </div>
                                     </div>
                                     <div style="text-align:right;">
@@ -146,5 +150,18 @@
     </body>
 </html>
 <?php
-    
+    if($_POST){
+
+        $name = $_REQUEST['username'];
+        $phone = $_REQUEST['phone'];
+        $checkin = $_REQUEST['datein'];
+        $checkout = $_REQUEST['dateout'];
+        $cat_id = $_REQUEST['cat_id'];
+        $U_id = $_SESSION['username'];
+
+        $insert = "INSERT INTO `reservation`(`username`, `contact`, `checkindate`, `checkoutdate`, `cat_id`, `U_id`) VALUES
+        ('$name','$phone','$checkin','$checkout','$cat_id','$U_id')";
+
+        $query = mysqli_query($conn,$insert);
+    }
 ?>
