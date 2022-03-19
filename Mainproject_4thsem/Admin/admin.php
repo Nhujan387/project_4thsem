@@ -1,11 +1,21 @@
-<?php include '../db_configure.php' ?>
-<?php include 'logout.php' ?>
+<?php
+    session_start();  
+    if(!isset($_SESSION["Adname"]))
+    {
+    header("location:login.php");
+    }
+
+    include '../db_configure.php' ;
+    include 'logout.php';
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <link rel="stylesheet" href="style.css" />
-        <title>Friends Hotel</title>
+        <title>Friends'</title>
     </head>
     <style>
         .adbox{
@@ -41,6 +51,7 @@
             font-size: 18px;
             padding:3px;
             border-radius:5px;
+            box-shadow:none;
         }
         .addadmin{
             margin:10px;
@@ -80,18 +91,19 @@
                 <nav>
                     <ul>
                         <li> <a href="admin.php" ><button class="active" style="color: red;">Admin</button></a></li>      
-                        <li> <a href="roomcatagrory.php"><button>Rooms Catagory</button></a></li>
+                        <li> <a href="room_category.php"><button>Rooms Catagory</button></a></li>
                         <li> <a href="room.php"><button>Room</button></a></li>
-                        <li> <a href="Contact.php"><button>Site</button></a></li>
+                        <li> <a href="reservation.php"><button>Reservation</button></a></li>
                     </ul>
                 </nav>
             </div>
             <div class="tablein" >
+                <h2 style="margin:10px 0px 10px;">Welcome <?= $_SESSION['Adname'];?> </h2>
                 <div style="font-size:18px;margin:10px 0px 10px;">
                     Admin Accounts
                 </div>  
                 <table id = "table"  >
-                    <thead>
+                    <thead style="background-color:grey; height:5vh;">
                         <tr>
                             <th>Username</th>
                             <th>Action</th>
@@ -104,7 +116,7 @@
                         ?>
                         <tr>
                             <td ><?php echo $fetch['A_name']?></td>
-                            <td style="text-align:center"> <button class="ed"> Delete</button></td>
+                            <td style="text-align:center"> <button class="ed"> Remove</button></td>
                         </tr>
                         <?php
                             }
@@ -116,10 +128,6 @@
                     </div>
                 </div>
             </div>
-            <script type = "text/javascript">
-                $(document).ready(function(){
-                    $("#table").DataTable();
-                });
-            </script>
+            
     </body>
 </html>

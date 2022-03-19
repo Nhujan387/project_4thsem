@@ -1,4 +1,4 @@
-<?php include "signmodal.php" ?>
+<?php session_start(); include "signmodal.php";  ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +19,14 @@
                     <li> <a href="room.php"><button>Rooms</button></a></li>
                     <li> <a href="about.php"><button>About us</button></a></li>
                     <li> <a href="Contact.php" ><button class="active" style="color: red;">Contact us</button></a></li>
+                    <?php 
+                    if(!isset($_SESSION['username'])){?>
                     <li> <a><button onclick="document.getElementById('signdiv').style.display='block'">Sign in</button></a></li>
+                    <?php }?>
+                    <?php 
+                    if(isset($_SESSION['username'])){?>
+                    <li> <a href="logout.php"><button>Log out</button></a></li>
+                   <?php }?>
                 </ul>
             </nav>
             <div class="cont-container">
@@ -56,7 +63,7 @@
                             </div>
                         </form>
                     </div>
-                
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16801.698794103926!2d85.30631258075817!3d27.71351701495491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb18fde4b6fb07%3A0x7b0dcfa6468e82e2!2sHotel%20Friends%20Home!5e0!3m2!1sen!2snp!4v1647657893932!5m2!1sen!2snp" width="600" height="450" style="border:0; " allowfullscreen="" loading="lazy"></iframe>
             </div>
 
         <footer>

@@ -1,4 +1,4 @@
-<?php include "signmodal.php" ?>
+<?php  session_start(); include "signmodal.php"; ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,7 +18,14 @@
                     <li> <a href="room.php"><button>Rooms</button></a></li>
                     <li> <a href="about.php"><button class="active" style="color: red;">About us</button></a></li>
                     <li> <a href="Contact.php"><button>Contact us</button></a></li>
+                    <?php 
+                    if(!isset($_SESSION['username'])){?>
                     <li> <a><button onclick="document.getElementById('signdiv').style.display='block'">Sign in</button></a></li>
+                    <?php }?>
+                    <?php 
+                    if(isset($_SESSION['username'])){?>
+                    <li> <a href="logout.php"><button>Log out</button></a></li>
+                   <?php }?>
                 </ul>
             </nav>
 

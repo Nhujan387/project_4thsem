@@ -1,5 +1,13 @@
-<?php include '../db_configure.php' ?>
-<?php include 'logout.php' ?>
+<?php 
+    include '../db_configure.php';
+    include 'logout.php';
+    session_start();  
+    if(!isset($_SESSION["Adname"]))
+    {
+    header("location:login.php");
+    }
+?>
+
 <?php
     global $adminerror;
     if($_POST){
@@ -98,9 +106,9 @@
                 <nav>
                     <ul>
                         <li> <a href="admin.php" ><button class="active" style="color: red;">Admin</button></a></li>      
-                        <li> <a href="roomcatagrory.php"><button>Rooms Catagory</button></a></li>
+                        <li> <a href="room_category.php"><button>Rooms Catagory</button></a></li>
                         <li> <a href="room.php"><button>Room</button></a></li>
-                        <li> <a href="Contact.php"><button>Site</button></a></li>
+                        <li> <a href="resrvation.php"><button>Reservation</button></a></li>
                     </ul>
                 </nav>
             </div>

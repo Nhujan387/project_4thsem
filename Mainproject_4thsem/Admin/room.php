@@ -1,10 +1,17 @@
-<?php include '../db_configure.php' ?>
-<?php include 'logout.php' ?>
+<?php
+    session_start();  
+    if(!isset($_SESSION["Adname"]))
+    {
+    header("location:login.php");
+    }
+
+    include '../db_configure.php' ;
+    include 'logout.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="style.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Document</title>
     </head>
     <style>
@@ -39,121 +46,106 @@
                 border-right:none;
                 margin: 3px;
             }
+        .room{
+            width: 90%;
+            margin:0 auto;
 
-            .catagory{
-                width: 35%;
-                margin: 0 auto;
-            }
-            .catform{
-                width: 100%;
-                background-color: white;
-                border: 2px solid black;
-                box-shadow: 0 8px 16px 0 rgba(0,0,0,1);
-                padding: 15px;
+        }
+        table{
+            border-collapse: collapse;
+            border: 2px solid black;
+            width:100%;
+            font-size: 18px;
+            background-color: white;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,1);
+        }
+        th{
+            border: 2px solid black;
+            font-size: 20px;
+            width: 20px;
+        }
+        td{
+            border: 2px solid black;
+            text-align: center;
+        }
+        .addroom{
+                margin:10px;
+                background-color: green;
                 font-size: 18px;
-                border-radius: 10px;
+                padding: 3px;
+                border-radius: 8px;
+                width: 120px;
             }
-            .input{
-                width:100%;
-                font-size: 16px;
-                padding: 5px;
-                margin: 3px;
-            }
-            .msgerr{
-                color:red;
-                font-size: 12px;
-                float:right;
-                margin-top: 5px;
-                display:none;
-            }
-            
+
     </style>
-    </head>
     <body>
-        <div class="adbox">
+    <div class="adbox">
             <div class="dash">
                 <nav>
                     <ul>
                         <li> <a href="admin.php" ><button >Admin</button></a></li>      
-                        <li> <a href="roomcatagrory.php"><button >Rooms Catagory</button></a></li>
+                        <li> <a href="room_category.php"><button >Rooms Catagory</button></a></li>
                         <li> <a href="room.php"><button class="active" style="color: red;">Room</button></a></li>
-                        <li> <a href="Contact.php"><button>Site</button></a></li>
+                        <li> <a href="reservation.php"><button>Reservation</button></a></li>
                     </ul>
                 </nav>
             </div>
-            <div class="catagory">
+            <div class="room">
                 <div style="font-size:18px;margin:10px 0px 10px;">
-                    Add Rooms
-                </div>  
-                <div class="catform">
-                    <form id="FormRoom" name="form" method="POST" onsubmit="event.preventDefault(); validroom();">
-                        <label>Room</label>
-                        <span class="msgerr" id="err_room" >Fill the room</span>
-                        <input class="input" type="text" id="room" name="room" /></br>
-                        <label>Catagory</label>
-                        <span class="msgerr" id="err_category" >Choose the category</span>
-                        <select class="input" name="catagory" id="catagory">
-                        <option value=""></option>
-                                <?  
-                                    mysql_connect ("localhost","root","");  
-                                    mysql_select_db ("company");  
-                                    $select="company";  
-                                    if (isset ($select)&&$select!=""){  
-                                    $select=$_POST ['NEW'];  
-                                }  
-                                ?>  
-                            <?  
-                                $list=mysql_query("select * from employee order by emp_id asc");  
-                                while($row_list=mysql_fetch_assoc($list)){  
-                            ?>  
-                            <option value="<? echo $row_list['emp_id']; ?>"<? if($row_list['emp_id']==$select){ echo "selected"; } ?>>  
-                                <?echo $row_list['emp_name'];?>  
-                            </option>  
-                            <?  }  ?>  
-                        </select>
-                        <label>Availability</label>
-                        <span class="msgerr" id="err_availability" >Check availability</span>
-                        <select class="input" name="available" id="available">
-                            <option value="available">Available</option>
-                            <option value="book">Booked</option>
-                        </select>
-                        
-                        <input style=" font-size: 18px;border-radius: 5px ;width: 120px; height: 35px ; 
-                        background-color: black; color: white; cursor: pointer; margin-top: 5px;" type="submit" name="Add room" value="Add Room" />
-                    </form>
+                    Rooms
+                </div> 
+                <table id = "table"  >
+                    <thead style="background-color:grey; height:5vh;">
+                        <tr>
+                            <th>S-no</th>
+                            <th>Room-no</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            $displayquery = "SELECT room.room_num, room.status, room_category.catagory_name FROM room LEFT JOIN room_category 
+                            ON room.cat_id = room_category.cat_id";
+                            $querydisplay = mysqli_query($conn,$displayquery);
+                            $i=1;
+                            while($fetch = mysqli_fetch_array($querydisplay)){
+                                ?>
+                                    <tr>
+                                        <td><?php echo $i++;?> </td>
+                                        <td><?php echo $fetch['room_num'];?> </td>
+                                        <td><?php echo $fetch['catagory_name'];?> </td>
+                                        <td>
+                                            
+                                            <?php 
+                                                if($fetch['status'] == 0){
+                                                    echo 'Available';
+                                                }else{
+                                                    echo 'Unavailable';
+                                                }
+                                                
+                                            ?>
+                                        </td>
+                                        <td>
+                                        <a>
+                                            Update
+                                        </a>
+                                        <a >
+                                            Remove
+                                        </a>
+                                        </td>
+                                    </tr>
+                            <?php    
+                                }
+                            ?>
+                    </tbody>
+                    </table>
+                    <div style="text-align:right; margin-top:10px">
+                        <a href="add_room.php" ><button class="addroom">Add Room </button> </a>
+                    </div>
                 </div>
             </div>
         </div>
-        <script>
-            function validroom(){
-                room = document.getElementById('room').value;
-                catagory = document.getElementById('category');
-                available = document.getElementById('available');
-                isvalidate = true;
-
-                if(room == ''){
-                    document.getElementById('err_room').style.display = 'block';
-                    isvalidate = false;
-                }else{
-                    document.getElementById('err_room').style.display = 'none';
-                }
-                if (document.form.catagory.selectedIndex=="") {
-                    document.getElementById('err_category').style.display = 'block';
-                    isvalidate = false;
-                }else{
-                    document.getElementById('err_category').style.display = 'none';
-                }
-                if(available.value == ''){
-                    document.getElementById('err_availability').style.display = 'block';
-                    isvalidate = false;
-                }else{
-                    document.getElementById('err_availability').style.display = 'none';
-                }
-
-                if(isvalidate){
-                    document.getElementById('FormRoom').submit();
-                }
-            }
-        </script>
     </body>
 </html>

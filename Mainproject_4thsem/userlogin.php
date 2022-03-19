@@ -1,25 +1,40 @@
 <?php
+session_start();
 include 'db_configure.php';
 
     if($_POST){
 
-    $email = $_REQUEST['email'];
-    $password = $_REQUEST['psw'];
-    $query = $conn->query("SELECT * FROM `signup` WHERE `Email` = '$email'") or die(mysqli_error());
-    $fetch = $query->fetch_array();
-    $row = $query->num_rows;
+    $email = $_REQUEST['logemail'];
+    $password = $_REQUEST['logpsw'];
+    $query = ("SELECT * FROM `signup` WHERE `Email` = '$email'") or die(mysqli_error());
+    $querycheck = mysqli_query($conn,$query);
 
-    if($row != 0){
-        if (password_verify($password,$fetch['Password'])){
-            $user = 'you have successfully loged in'; 
-                echo "<script type='text/javascript'>alert('$user');</script>";
-                header('refresh:0;url=room.php');
+    $fetch = mysqli_num_rows($querycheck);
+    
+
+    if($fetch){
+        $email_check = mysqli_fetch_assoc($querycheck);
+
+        $db_pass = $email_check['Password'];
+
+        $_SESSION['username'] = $email_check['U_id'];
+        
+        $pass_decode = password_verify($password, $db_pass);
+
+        if($pass_decode){
+            echo "login sucessful";
+            ?>
+            <script>
+                location.replace("home.php");
+            </script>
+            <?php
+        }else{
+            echo "password incorrect";
         }
     }else{
-        $erroruser = 'wrong email id'; 
-            echo "<script type='text/javascript'>alert('$erroruser');</script>";  ;
+        echo "invalid email";
     }
 
-    }
     mysqli_close($conn);
+}
 ?>

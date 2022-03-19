@@ -1,16 +1,16 @@
-<?php include 'signmodal.php' ?>
-<?php
+<?php 
+    session_start();
 
-  $title = "Friend's hotel";
-
+    include 'signmodal.php' 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><?= $title; ?></title>
+        <title>Friend's Hotel</title>
         <link rel="stylesheet" href="homeStyle.css" />
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     </head>
@@ -25,7 +25,14 @@
                     <li> <a href="room.php"><button>Rooms</button></a></li>
                     <li> <a href="about.php"><button>About us</button></a></li>
                     <li> <a href="Contact.php"><button>Contact us</button></a></li>
+                    <?php 
+                    if(!isset($_SESSION['username'])){?>
                     <li> <a><button onclick="document.getElementById('signdiv').style.display='block'">Sign in</button></a></li>
+                    <?php }?>
+                    <?php 
+                    if(isset($_SESSION['username'])){?>
+                    <li> <a href="logout.php"><button>Log out</button></a></li>
+                   <?php }?>
                 </ul>
             </nav>
         

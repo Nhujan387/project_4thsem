@@ -1,5 +1,38 @@
 <?php include '../db_configure.php' ?>
-<?php include 'logout.php' ?>
+<?php 
+    include 'logout.php' 
+    session_start();  
+    if(!isset($_SESSION["Adname"]))
+    {
+    header("location:login.php");
+    }
+?>
+<?php
+    if($_POST){
+        $category = $_REQUEST['catagory'];
+        $price = $_REQUEST['price'];
+        $bed = $_REQUEST['bed'];
+        $files = $_FILES['file'];
+
+        $filename = $files['name'];
+        $fileerror = $files['error'];
+        $filetmp = $files['tmp_name'];
+
+        $fileext = explode('.',$filename);
+        $filecheck = strtolower(end($fileext));
+        $fileextstored = array('png','jpg','jpeg');
+
+        if(in_array($filecheck,$fileextstored)){
+            $destinationfile = 'zimage/'.$filename;
+            move_uploaded_file($filetmp,$destinationfile);
+
+            $insert = "INSERT INTO `room_category`(`catagory_name`, `price`, `beds`, `image`) VALUES 
+            ('$category','$price','$bed','$destinationfile')";
+
+            $query = mysqli_query($conn,$insert);
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -75,9 +108,9 @@
                 <nav>
                     <ul>
                         <li> <a href="admin.php" ><button >Admin</button></a></li>      
-                        <li> <a href="roomcatagrory.php"><button class="active" style="color: red;">Rooms Catagory</button></a></li>
+                        <li> <a href="room_category.php"><button class="active" style="color: red;">Rooms Catagory</button></a></li>
                         <li> <a href="room.php"><button>Room</button></a></li>
-                        <li> <a href="Contact.php"><button>Site</button></a></li>
+                        <li> <a href="reservation.php"><button>Reservation</button></a></li>
                     </ul>
                 </nav>
             </div>
@@ -86,7 +119,7 @@
                     Add Rooms Catagory
                 </div>  
                 <div class="catform">
-                    <form id="Formcatagory" method="POST" onsubmit="event.preventDefault(); valid();">
+                    <form id="Formcatagory" method="POST" enctype="multipart/form-data" onsubmit="event.preventDefault(); valid();">
                         <label>Category</label>
                         <span class="msgerr" id="err_category" >Fill the category</span>
                         <input class="input" type="text" id="catagory" name="catagory" /></br>
@@ -97,7 +130,7 @@
                         <span class="msgerr" id="err_beds" >Enter beds details</span>
                         <input class="input" type="text" id="bed" name="bed" /></br>
                         <label>Image</label>
-                        <input class="input" type="file" id="image" name="image" accept="image/*" 
+                        <input class="input" type="file" id="file" name="file" accept="image/*" 
                         onchange="document.getElementById('showimg').src=window.URL.createObjectURL(this.files[0]);" /></br>
 
                         <img style="width: 50%;height:20vh; border: 1px solid black"  id="showimg"></p>

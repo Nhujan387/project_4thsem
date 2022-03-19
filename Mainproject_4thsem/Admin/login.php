@@ -1,19 +1,25 @@
-<?php include '../db_configure.php' ?>
+<?php 
+    session_start();
+    include '../db_configure.php' 
+?>
 <?php
     Global $unathorized;
-    if($_POST){
+    if(isset($_POST['login'])){
 
         $username = $_REQUEST['Adname'];
         $password = $_REQUEST['Adpassword'];
-        $query = $conn->query("SELECT * FROM `admin` WHERE `A_name` = '$username' && `password` = '$password'") or die(mysqli_error());
-		$fetch = $query->fetch_array();
-		$row = $query->num_rows;
+        $query = mysqli_query($conn,"SELECT * FROM `admin` WHERE `A_name` = '$username' && `password` = '$password'") or die(mysqli_error());
+		$row = mysqli_fetch_array($query);
 		
-		if($row > 0){
-			header('location:admin.php');
+		if(is_array($row)){
+            $_SESSION['Adname'] = $row['A_name'];
+            $_SESSION['Adpassword'] = $row['password'];
 		}else{
 			$unathorized = "You ain't admin, imposter"  ;
 		}
+        if(isset($_SESSION["Adname"])){
+            header('location:admin.php');
+        }
 
     }
     mysqli_close($conn);
@@ -23,9 +29,6 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Friends'</title>

@@ -135,14 +135,6 @@
             width:100%;
             height: 100vh;
             background-color: rgba(0, 0, 0, 0.8);
-            position: absolute;
-            top: 0;
-            display: none;
-        }
-        .modal2{
-            width:100%;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0);
             position: fixed;
             top: 0;
             display: none;
@@ -331,7 +323,7 @@
 
         .RoomBook{
             border: 1px solid black;
-            width: 70%;
+            width: 40%;
             margin: 0 auto;
             height: 75vh;
         }
@@ -339,6 +331,95 @@
         #SuiteRoom{
             font-size: large;
             font-weight: bold;
+        }
+        /* 177 number FORM Details*/
+        .PD-name{
+            width: 98%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+        
+        .PD-email{
+            width: 98%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+        
+        .PD-phone{
+            width: 98%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            font-size: 16px;
+        }
+        
+        .BD-numberOfguest{
+            width: 98%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            font-size: 16px;
+            
+        }
+        
+        .BD-submit{
+            background-color: #FD4545;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            cursor: pointer;
+            width: 90px;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .BD-submit:hover{
+            background-color: red;
+        }
+
+        .BD-chck{
+            display: flex;
+           
+        }
+
+        .BD-chck1{
+            
+            padding: 12px 14px;
+            height: 10%;
+
+        }
+
+        .BD-chck2{
+            
+            padding: 12px 14px;
+            margin-left: 6%;
+            height: 10%;
+        }
+        .BD-date{
+            padding: 10px 12px;
+            font-size: 18px;
+        }
+
+
+        legend{
+            font-size: 25px;
+        }
+
+        .room-fieldset{
+            padding: 10px;
+        }
+
+        .error{
+            color: red;
+            margin-bottom: 9px;
         }
 
         

@@ -51,21 +51,46 @@
                             <span class="errormsg" id="password_match">Password did not match <br/></span>
                             <input class="inputstyle" type="password" placeholder="Confirm password" name="pswcon" id="pswcon"  > <br> 
                             
-                            <button type="submit" class="signbtn">Sign Up</button>
+                            <button type="submit" name="sign-up" class="signbtn">Sign Up</button>
                         </form>
                 </div>
                 <div id="signin">
-                    <form method="POST" action="userlogin.php"  >
-                        <label for="email"><b>Email</b></label> <br/>
-                        <input class="inputstyle" type="text" placeholder="Enter email" name="email" > <br>
-                        <label for="psw"><b>Password</b></label> <br/>
-                        <input class="inputstyle" type="password" placeholder="Enter password" name="psw"  > <br> 
-                        <button type="submit" class="signbtn" >Sign In </button>
+                    <form id="sign-in" method="POST" action="userlogin.php" onsubmit="event.preventDefault(); signin()" >
+                        <label for="Email"><b>Email</b></label>
+                        <span class="errormsg"  id="for_log_email" >Email cannot be empty </span></br>
+                        <input class="inputstyle" type="text" placeholder="Enter email" name="logemail" id="logemail" > <br>
+                        <label for="Psw"><b>Password</b></label> 
+                        <span class="errormsg"  id="for_log_password" >Password cannot be empty </span></br>
+                        <input class="inputstyle" type="password" placeholder="Enter password" name="logpsw" id="logpsw"  > <br> 
+                        <button type="submit" name="sign-in" class="signbtn" >Sign In </button>
                     </form>
                 </div> 
             </div> 
         </div>
     <script>
+        function signin(){
+                email = document.getElementById('logemail').value;
+                password = document.getElementById('logpsw').value;
+                isValidate = true;
+
+                if(email == ''){
+                     document.getElementById('for_log_email').style.display = 'block';
+                     isValidate = false; 
+                }else{
+                    document.getElementById('for_log_email').style.display = 'none';
+                }
+
+                if(password == ''){
+                    document.getElementById('for_log_password').style.display = 'block';
+                    isValidate = false;
+                } else{
+                        document.getElementById('for_log_password').style.display = 'none';
+                }
+
+                if(isValidate){
+                    document.getElementById("sign-in").submit();
+                }
+            }
         function signupvalidate(){
                  userName = document.getElementById('name').value;
                  Email = document.getElementById('email').value;
@@ -115,8 +140,9 @@
                 if(isValidate){
                     document.getElementById("signup-form").submit();
                 }
-                
             }
+
+            
     </script>
     </body>
 </html>
@@ -137,9 +163,8 @@
             $erroruser = 'Email Id already exists \n Try using other id'; 
             echo "<script type='text/javascript'>alert('$erroruser');</script>";
         }else{
-            $conn->query("INSERT INTO `signup` (`id`, `Full_name`, `Email`, `Password`)
+            $conn->query("INSERT INTO `signup` (`U_id`, `Full_name`, `Email`, `Password`)
             VALUES ('','$full_name', '$email','$enc_password')") or die(mysqli_error());
-            header("location:room.php");
         }      
     }
     mysqli_close($conn);
