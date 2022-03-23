@@ -1,12 +1,13 @@
 <?php include '../db_configure.php' ?>
 <?php 
-    include 'logout.php' 
+    include 'logout.php';
     session_start();  
     if(!isset($_SESSION["Adname"]))
     {
     header("location:login.php");
     }
 ?>
+
 <?php
     if($_POST){
         $category = $_REQUEST['catagory'];
@@ -28,6 +29,10 @@
 
             $insert = "INSERT INTO `room_category`(`catagory_name`, `price`, `beds`, `image`) VALUES 
             ('$category','$price','$bed','$destinationfile')";
+
+            if($insert){
+                ?> <script>alert('Category added successful');location.replace("room_category.php");</script><?php
+            }
 
             $query = mysqli_query($conn,$insert);
         }

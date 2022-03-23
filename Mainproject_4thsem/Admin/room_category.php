@@ -133,7 +133,7 @@
                     </thead>
                     <tbody>
                         <?php 
-                            $displayquery = "SELECT * FROM `room_category`";
+                            $displayquery = "SELECT * FROM `room_category` order by price desc";
                             $querydisplay = mysqli_query($conn,$displayquery);
 
                             while($fetch = mysqli_fetch_array($querydisplay)){
@@ -144,10 +144,10 @@
                                     <td><?php echo $fetch['beds'];?> </td>
                                     <td><img src="<?php echo $fetch['image'];?>" height="100px" width="150px" > </td>
                                     <td>
-                                        <a class="update" href= "update_category.php?id=<?php echo $fetch['cat_id'];?>">
-                                            Update
+                                        <a onclick="confirm()" class="update" href= "update_category.php?cat_id=<?php echo $fetch['cat_id'];?>">
+                                            Update 
                                         </a>
-                                        <a class="delete" href="delete_category.php?id= <?php echo $fetch['cat_id']?>">
+                                        <a class="delete" href="delete_category.php?cat_id= <?php echo $fetch['cat_id']?>">
                                             Remove
                                         </a>
                                     </td>
@@ -162,7 +162,6 @@
                     </div>
                 </div>
             </div>
-        
 
     </body>
 </html>

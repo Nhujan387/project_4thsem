@@ -7,6 +7,40 @@
         </title>
         <link rel="stylesheet" href="homeStyle.css">
         <link rel="stylesheet" href="contactStyle.css">
+        <style>
+             body{
+                margin: 0;
+                padding: 0;
+                background-color: rgb(229, 255, 137);
+            }
+
+            .cont-container{
+                display: flex;
+                padding: 14px 18px;
+                position: absolute;
+                border-radius: 20px;
+                margin-left: 180px;
+                margin-top: 40px;
+                background-color: rgb(194, 223, 90);
+                box-shadow: 0 70px 60px -50px rgb(90, 88, 88);
+
+            }
+
+            .cont-info{
+                margin-left: 50px;
+                width: 100%;
+                font-size: 18px;
+            }
+
+            h2{
+                text-align: center;
+            }
+
+            p{
+                font-size: 20px;
+                    
+            }
+        </style>
     </head>
     <body>
         <div class="head" > 
@@ -30,45 +64,36 @@
                 </ul>
             </nav>
             <div class="cont-container">
-                <div style="text-align:center">
-                    <h2 class="cont-header">Contact Us</h2>
-                    <p class="cont-text">Swing by for a cup of coffee, or leave us a message:</p>
-                </div>
-                    <div class="column1">
-                        <form action="" onsubmit="event.preventDefault(); validateContact()">
-                            <label for="fname">First name:</label>  
-                                <input type="text" name="username" class="cont-fname" id="fname" placeholder="Enter your first name" > <br>
-                                <div class="error" id="fname-error"></div>
-    
-                            <label for="lname">Last name:</label>  
-                                <input type="text" name="username" class="cont-lname" id="lname" placeholder="Enter your last name" > <br>
-                                <div class="error" id="lname-error"></div>
-    
-                            <label for="email">Email:</label>
-                               <input type="email" name="email" id="email" class="cont-email" placeholder="Enter your email" > <br>
-                               <div class="error" id="email-error"></div>
-                               
-                            <label for="contact">Intention of contacting</label>
-                               <select id="contact" name="Place" class="cont-contacting">
-                                    <option value="General inquiry">General inquiry</option>
-                                    <option value="Report issue">Report issue</option>
-                                    <option value="Support Friends Hotel">Support Friends Hotel</option>
-                                    <option value="Other">Other(Please specify in attatchment)</option>
-                                </select> <br>
-                        
-                            <label for="subject">Subject:</label>
-                                <textarea id="subject" class="cont-subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
-                                <div class="sub_box">
-                                <input type="submit" class="cont-submit" value="Submit"> <br>
-                            </div>
-                        </form>
-                    </div>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16801.698794103926!2d85.30631258075817!3d27.71351701495491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb18fde4b6fb07%3A0x7b0dcfa6468e82e2!2sHotel%20Friends%20Home!5e0!3m2!1sen!2snp!4v1647657893932!5m2!1sen!2snp" width="600" height="450" style="border:0; " allowfullscreen="" loading="lazy"></iframe>
+            <div class="cont-map">
+                <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16801.698794103926!2d85.30631258075817!3d27.71351701495491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb18fde4b6fb07%3A0x7b0dcfa6468e82e2!2sHotel%20Friends%20Home!5e0!3m2!1sen!2snp!4v1647657893932!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe></p>
             </div>
+            <div class="cont-info">
+                <h2>Contact Information</h2>
+                <div class="contContact">
+                    <h3>Address</h3> 
+                    <p>230, Hotel Marg, Lazimpat, Kathmandu, Nepal</p>
+                </div>
 
-        <footer>
-            <p>Friends Hotel, Copyright &copy; 2017</p>
-        </footer>
+                <div class="contPhone"> 
+                    <h3>Phone</h3>
+                    <p>
+                        ***-***-*****-****
+                    </p>
+                </div>
+
+                <div class="contTelephone">
+                    <h3>Telephone</h3>
+                    <p>********-*****</p>
+                </div>
+
+                <div class="contEmail">
+                    <h3>Email</h3>
+                    <p>example@gmail.com</p>
+                </div>
+            </div>
+        </div>
+
+        
         
     </body>
 </html>    

@@ -22,7 +22,6 @@ include 'db_configure.php';
         $pass_decode = password_verify($password, $db_pass);
 
         if($pass_decode){
-            echo "login sucessful";
             ?>
             <script>
                 location.replace("home.php");

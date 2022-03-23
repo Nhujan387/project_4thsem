@@ -55,12 +55,9 @@
             border-collapse: collapse;
             border: 2px solid black;
             width:100%;
-            font-size: 18px;
+            font-size: 16px;
             background-color: white;
             box-shadow: 0 8px 16px 0 rgba(0,0,0,1);
-        }
-        tr{
-            height: 4vh;
         }
         th{
             border: 2px solid black;
@@ -71,91 +68,91 @@
             border: 2px solid black;
             text-align: center;
         }
-        .addroom{
-                margin:10px;
-                background-color: green;
-                font-size: 18px;
-                padding: 3px;
-                border-radius: 8px;
-                width: 120px;
-            }
-            .update{
+        .checkin{
                 border-radius: 4px;
                 color: black;
-                background-color: blue;
+                background: green;
                 text-decoration:none;
-                margin:1px;
-                padding:2px;
-                font-size:15px;
+                margin:3px;
+                padding:5px;
+                font-size:14px;
                 font-weight:bold;
+                width: 80px;
+                box-shadow:none;
             }
-            .delete{
+            .checkout{
                 border-radius: 4px;
                 color: black;
                 background: red;
                 text-decoration:none;
-                margin-bottom:1px;
-                padding:2px;
-                font-size:15px;
+                margin:3px;
+                padding:5px;
+                font-size:14px;
                 font-weight:bold;
+                width: 80px;
+                box-shadow:none;
             }
+
     </style>
     <body>
-    <div class="adbox">
+        <div class="adbox">
             <div class="dash">
                 <nav>
                     <ul>
                         <li> <a href="admin.php" ><button >Admin</button></a></li>      
                         <li> <a href="room_category.php"><button >Rooms Catagory</button></a></li>
-                        <li> <a href="room.php"><button class="active" style="color: red;">Room</button></a></li>
-                        <li> <a href="reservation.php"><button>Reservation</button></a></li>
+                        <li> <a href="room.php"><button>Room</button></a></li>
+                        <li> <a href="reservation.php"><button  class="active" style="color: red;">Reservation</button></a></li>
                     </ul>
                 </nav>
             </div>
             <div class="room">
-                <div style="font-size:18px;margin:10px 0px 10px;">
-                    Rooms
+            <div style="font-size:18px;margin:10px 0px 10px;">
+                    Reservation
                 </div> 
                 <table id = "table"  >
                     <thead style="background-color:grey; height:5vh;">
                         <tr>
-                            <th>S-no</th>
-                            <th>Room-no</th>
-                            <th>Category</th>
-                            <th>Status</th>
+                            <th>Name</th>
+                            <th>Contact no</th>
+                            <th>Room Number</th>
+                            <th>Room status</th>
+                            <th>Check in date</th>
+                            <th>Check out date</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            $displayquery = "SELECT room.room_id, room.room_num, room.status, room_category.catagory_name FROM room LEFT JOIN room_category 
-                            ON room.cat_id = room_category.cat_id order by room.room_num desc";
+                            $displayquery = "SELECT reservation.Username, reservation.Contact, reservation.Checkindate, reservation.Checkoutdate, reservation.status, room.room_num 
+                            FROM `reservation` INNER JOIN `room` on reservation.room_id = room.room_id;";
                             $querydisplay = mysqli_query($conn,$displayquery);
                             $i=1;
-                            while($fetch = mysqli_fetch_array($querydisplay)){
+                            while($result = mysqli_fetch_array($querydisplay)){
                                 ?>
                                     <tr>
-                                        <td><?php echo $i++;?> </td>
-                                        <td><?php echo $fetch['room_num'];?> </td>
-                                        <td><?php echo $fetch['catagory_name'];?> </td>
+                                        <td><?php echo $result['Username'];?> </td>
+                                        <td><?php echo $result['Contact'];?> </td>
+                                        <td><?php echo $result['room_num'];?></td>
                                         <td>
-                                            
                                             <?php 
-                                                if($fetch['status'] == 0){
-                                                    echo '<span style="color:green">Available</span>';
-                                                }else{
-                                                    echo '<span style="color:red">Unavailable</span>';
+                                                if($result['status'] == 0){
+                                                    echo '<span style="color:yellow">Pending</span>';
+                                                }else if($result['status'] == 1){
+                                                    echo '<span style="color:green">Checked in</span>';
+                                                }else if($result['status'] == 2){
+                                                    echo '<span style="color:red">Checked out</span>';
                                                 }
                                                 
                                             ?>
                                         </td>
+                                        <td><?php echo $result['Checkindate'];?></td>
+                                        <td><?php echo $result['Checkoutdate'];?></td>
                                         <td>
-                                            <a class="update" href= "update_room.php?room_id=<?php echo $fetch['room_id'];?>">
-                                                Update
-                                            </a>
-                                            <a class="delete" href="delete_room.php?room_id= <?php echo $fetch['room_id']?>">
-                                                Remove
-                                            </a>
+                                            <form method='post'>
+                                                <button class="checkin" type="submit" value="1" name='check'>Checkin</button>
+                                                <button class="checkout" type="submit"  value="2" name='check'>Checkout</button>
+                                            </form>
                                         </td>
                                     </tr>
                             <?php    
@@ -166,8 +163,20 @@
                     <div style="text-align:right; margin-top:10px">
                         <a href="add_room.php" ><button class="addroom">Add Room </button> </a>
                     </div>
-                </div>
             </div>
         </div>
     </body>
 </html>
+
+<?php
+    if($_post){
+        $checkval = $_REQUEST['check'];
+        echo $checkval;
+
+        /*
+
+        $update = "UPDATE `reservation` SET `status`=$checkval";
+        $querydisplay = mysqli_query($conn,$displayquery);*/
+    }
+
+?>

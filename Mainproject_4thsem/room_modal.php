@@ -104,15 +104,15 @@
                 <div class="RoomBook" style="margin-top: 5px; background-color:#f8f8ff; border-radius:10px;">  
                     <div style=" margin: 10px; height: 59vh; ">
                         <?php
-                            $displayquery = "SELECT * FROM `room_category` WHERE `cat_id` = '$_REQUEST[cat_id]'";
+                            $displayquery = "SELECT * FROM `room` WHERE `room_id` = '$_REQUEST[room_id]'";
                             $querydisplay = mysqli_query($conn,$displayquery);
-                            while($result = mysqli_fetch_array($querydisplay)){
+                            $result = mysqli_fetch_array($querydisplay)
                         ?>
 
                         <form id="SuiteRoom" action="" method="POST" onsubmit="event.preventDefault(); validateDetails()">
                             <fieldset class="room-fieldset">
                             <legend>Book</legend>
-                                <p style="font-size:24px;text-decoration:underline; margin-bottom:5px; "><?= $result['catagory_name']; }?></p> 
+                                <p style="font-size:24px;text-decoration:underline; margin-bottom:5px; "><?= $result['room_num']; ?></p> 
                                 <label for="username">Full Name:</label>   <br />
                                     <input type="text" class="PD-name" name="username" id="username" placeholder="Your full name"
                                     title="please enter in more than three letters"> 
@@ -156,11 +156,12 @@
         $phone = $_REQUEST['phone'];
         $checkin = $_REQUEST['datein'];
         $checkout = $_REQUEST['dateout'];
-        $cat_id = $_REQUEST['cat_id'];
+        $status = 0;
+        $room_id = $_REQUEST['room_id'];
         $U_id = $_SESSION['username'];
 
-        $insert = "INSERT INTO `reservation`(`username`, `contact`, `checkindate`, `checkoutdate`, `cat_id`, `U_id`) VALUES
-        ('$name','$phone','$checkin','$checkout','$cat_id','$U_id')";
+        $insert = "INSERT INTO `reservation`(`Username`, `Contact`, `Checkindate`, `Checkoutdate`, `status`, `room_id`, `U_id`) VALUES
+        ('$name','$phone','$checkin','$checkout','$status','$room_id','$U_id')";
 
         $query = mysqli_query($conn,$insert);
     }

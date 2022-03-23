@@ -116,7 +116,11 @@
                         ?>
                         <tr>
                             <td ><?php echo $fetch['A_name']?></td>
-                            <td style="text-align:center"> <button class="ed"> Remove</button></td>
+                            <td style="text-align:center"> 
+                                <a href="deleteadmin.php?A_id=<?php echo $fetch['A_id'];?>">
+                                    <button class="ed"> Remove</button>
+                                </a>
+                            </td>
                         </tr>
                         <?php
                             }

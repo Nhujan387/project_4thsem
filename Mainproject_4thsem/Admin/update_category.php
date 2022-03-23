@@ -1,13 +1,14 @@
 <?php include '../db_configure.php' ?>
 <?php 
-    include 'logout.php' ;
+    include 'logout.php';
     session_start();  
     if(!isset($_SESSION["Adname"]))
     {
     header("location:login.php");
     }
-
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -71,8 +72,8 @@
                 color:red;
                 font-size: 12px;
                 float:right;
-                margin-top: 5px;
                 display:none;
+                margin-top: 5px;
             }
             
     </style>
@@ -83,93 +84,83 @@
                 <nav>
                     <ul>
                         <li> <a href="admin.php" ><button >Admin</button></a></li>      
-                        <li> <a href="room_category.php"><button >Rooms Catagory</button></a></li>
-                        <li> <a href="room.php"><button class="active" style="color: red;">Room</button></a></li>
+                        <li> <a href="room_category.php"><button class="active" style="color: red;">Rooms Catagory</button></a></li>
+                        <li> <a href="room.php"><button>Room</button></a></li>
                         <li> <a href="reservation.php"><button>Reservation</button></a></li>
                     </ul>
                 </nav>
             </div>
             <div class="catagory">
                 <div style="font-size:18px;margin:10px 0px 10px;">
-                    Add Rooms
+                    Add Rooms Catagory
                 </div>  
                 <div class="catform">
-                    <form id="FormRoom" name="form" method="POST"  enctype="multipart/form-data" onsubmit="event.preventDefault(); validroom();">
-                        <label>Room No</label>
-                        <span class="msgerr" id="err_room" >Fill the room</span>
-                        <input class="input" type="text" id="room" name="room" /></br>
-                        <label>Catagory</label>
-                        <span class="msgerr" id="err_category" >Choose the category</span>
-                        <select class="input" name="catagory" id="catagory">
-                        <option>--Select--</option>
-                        <?php 
-								$cat = $conn->query("SELECT * FROM room_category");
-                                if($cat->num_rows>0){
-                                    while($row= $cat->fetch_assoc()) {
-                                        ?>
-                                        <option value="<?php echo $row['cat_id'] ?>"><?php echo $row['catagory_name'] ?></option>
-                               
-							<?php
-								}}
-							?>
-                        </select>
-                        <label>Availability</label>
-                        <span class="msgerr" id="err_availability" >Check availability</span>
-                        <select class="input" name="status" id="status">
-                            <option value="0">Available</option>
-                            <option value="1">Booked</option>
-                        </select>
+                <?php 
+                        $updateid = $_REQUEST['cat_id']; 
+                        $select = "SELECT * FROM `room_category` WHERE cat_id=$updateid";
+                        $result = mysqli_query($conn,$select);
+                        $room = mysqli_fetch_assoc($result);
+                    ?>
+                    <form id="Formcatagory" method="POST" enctype="multipart/form-data" onsubmit="event.preventDefault(); valid();">
+                        <label>Category</label>
+                        <span class="msgerr" id="err_category" >Fill the category</span>
+                        <input class="input" type="text" id="catagory" name="catagory" placeholder=<?= $room['catagory_name'];?> /></br>
+                        <label>Price/Night</label>
+                        <span class="msgerr" id="err_price" >Insert Price</span>
+                        <input class="input" type="number" id="price" name="price" placeholder=<?= $room['price'];?> /></br>
+                        <label>Beds</label>
+                        <span class="msgerr" id="err_beds" >Enter beds details</span>
+                        <input class="input" type="text" id="bed" name="bed" placeholder=<?= $room['beds'];?> /></br>
                         <label>Image</label>
                         <input class="input" type="file" id="file" name="file" accept="image/*" 
                         onchange="document.getElementById('showimg').src=window.URL.createObjectURL(this.files[0]);" /></br>
 
                         <img style="width: 50%;height:20vh; border: 1px solid black"  id="showimg"></p>
                         
-                        <input style=" font-size: 18px;border-radius: 5px ;width: 120px; height: 35px ; 
-                        background-color: black; color: white; cursor: pointer; margin-top: 5px;" type="submit" name="Add room" value="Add Room" />
+                        <input style=" font-size: 18px;border-radius: 5px ;width: 130px; height: 35px ; 
+                        background-color: black; color: white; cursor: pointer; margin-top: 5px;" type="submit" name="Add catagory" value="Update Catagory" />
                     </form>
                 </div>
             </div>
         </div>
         <script>
-            function validroom(){
-                room = document.getElementById('room').value;
-                catagory = document.getElementById('category');
-                available = document.getElementById('status');
+            function valid(){
+                catagory = document.getElementById('catagory').value;
+                price = document.getElementById('price').value;
+                bed = document.getElementById('bed').value;
                 isvalidate = true;
 
-                if(room == ''){
-                    document.getElementById('err_room').style.display = 'block';
-                    isvalidate = false;
-                }else{
-                    document.getElementById('err_room').style.display = 'none';
-                }
-                if (document.form.catagory.selectedIndex=="") {
+                if(catagory == ''){
                     document.getElementById('err_category').style.display = 'block';
                     isvalidate = false;
                 }else{
                     document.getElementById('err_category').style.display = 'none';
                 }
-                if(available.value == ''){
-                    document.getElementById('err_availability').style.display = 'block';
+                if(price == ''){
+                    document.getElementById('err_price').style.display = 'block';
                     isvalidate = false;
                 }else{
-                    document.getElementById('err_availability').style.display = 'none';
+                    document.getElementById('err_price').style.display = 'none';
+                }
+                if(bed == ''){
+                    document.getElementById('err_beds').style.display = 'block';
+                    isvalidate = false;
+                }else{
+                    document.getElementById('err_beds').style.display = 'none';
                 }
 
                 if(isvalidate){
-                    document.getElementById('FormRoom').submit();
+                    document.getElementById('Formcatagory').submit();
                 }
             }
         </script>
     </body>
 </html>
 <?php
-
     if($_POST){
-        $room = $_REQUEST['room'];
         $category = $_REQUEST['catagory'];
-        $status = $_REQUEST['status'];
+        $price = $_REQUEST['price'];
+        $bed = $_REQUEST['bed'];
         $files = $_FILES['file'];
 
         $filename = $files['name'];
@@ -184,15 +175,15 @@
             $destinationfile = 'zimage/'.$filename;
             move_uploaded_file($filetmp,$destinationfile);
 
-            $insert = "INSERT INTO `room`(`room_num`, `status`, `image`, `cat_id`) VALUES
-             ('$room','$status','$destinationfile','$category')";
+            $update = "UPDATE `room_category` SET 
+            `catagory_name`='$category',`price`='$price',`beds`='$bed',`image`='$destinationfile' WHERE `cat_id` = $updateid";
 
-            if($insert){
-            ?>  <script> alert('Room Added successfully') </script> <?php
-            }
-             
-            $query = mysqli_query($conn,$insert);
+            
+        if($update){
+            ?>  <script> alert('Room category updated successfully'); location.replace("room_category.php"); </script> <?php
+        }
+
+            $query = mysqli_query($conn,$update);
         }
     }
-
 ?>

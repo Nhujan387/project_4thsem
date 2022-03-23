@@ -94,10 +94,16 @@
                     Add Rooms
                 </div>  
                 <div class="catform">
+                    <?php 
+                        $updateid = $_REQUEST['room_id']; 
+                        $select = "SELECT * FROM `room` WHERE room_id=$updateid";
+                        $result = mysqli_query($conn,$select);
+                        $room = mysqli_fetch_assoc($result);
+                    ?>
                     <form id="FormRoom" name="form" method="POST"  enctype="multipart/form-data" onsubmit="event.preventDefault(); validroom();">
                         <label>Room No</label>
                         <span class="msgerr" id="err_room" >Fill the room</span>
-                        <input class="input" type="text" id="room" name="room" /></br>
+                        <input class="input" type="text" id="room" name="room" placeholder=<?= $room['room_num']; ?> /></br>
                         <label>Catagory</label>
                         <span class="msgerr" id="err_category" >Choose the category</span>
                         <select class="input" name="catagory" id="catagory">
@@ -117,7 +123,7 @@
                         <span class="msgerr" id="err_availability" >Check availability</span>
                         <select class="input" name="status" id="status">
                             <option value="0">Available</option>
-                            <option value="1">Booked</option>
+                            <option value="1">Unavailable</option>
                         </select>
                         <label>Image</label>
                         <input class="input" type="file" id="file" name="file" accept="image/*" 
@@ -126,7 +132,7 @@
                         <img style="width: 50%;height:20vh; border: 1px solid black"  id="showimg"></p>
                         
                         <input style=" font-size: 18px;border-radius: 5px ;width: 120px; height: 35px ; 
-                        background-color: black; color: white; cursor: pointer; margin-top: 5px;" type="submit" name="Add room" value="Add Room" />
+                        background-color: black; color: white; cursor: pointer; margin-top: 5px;" type="submit" name="Add room" value="Update Room" />
                     </form>
                 </div>
             </div>
@@ -184,14 +190,14 @@
             $destinationfile = 'zimage/'.$filename;
             move_uploaded_file($filetmp,$destinationfile);
 
-            $insert = "INSERT INTO `room`(`room_num`, `status`, `image`, `cat_id`) VALUES
-             ('$room','$status','$destinationfile','$category')";
+            $update = "UPDATE `room` SET `room_num`='$room',`status`='$status',`image`='$destinationfile',`cat_id`='$category'
+            WHERE `room_id` = '$updateid'";
 
-            if($insert){
-            ?>  <script> alert('Room Added successfully') </script> <?php
+            if($update){
+            ?>  <script> alert('Room updated successfully') ;location.replace("room.php");</script> <?php
             }
              
-            $query = mysqli_query($conn,$insert);
+            $query = mysqli_query($conn,$update);
         }
     }
 

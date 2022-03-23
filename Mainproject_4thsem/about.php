@@ -29,33 +29,34 @@
                 </ul>
             </nav>
 
-        <section id="main">
+            <section id="main">
                 <article id="main-col">
                     <h1 class="page-title">About us</h1>
                     <div class="dark">
-                        <p>
+                        <p class="about-text">
                             Friends Hotel provides one-stop room booking services in 13 languages through our website and 
                             mobile app. Hotel Manaslu enjoys a quiet yet central location in Kathmandu, just 7 km away from 
                             Tribhuvan International Airport. Guests can swim and relax at the outdoor pool surrounded by landscaped 
                             gardens. Free Wi-Fi is available.
                         </p>
-                        <p>
+                        <p class="about-text">
                             The on-site restaurant serves a wide selection of Nepalese, Chinese and Continental dishes. Cocktails can be enjoyed at the bar.
                         </p>
                     </div>
                 </article> 
-    
+
                 <aside id="sidebar">
+                <h3 class="page-title">What We Do?</h3>
                     <div class="dark">
-                     <h3>What We Do?</h3>
-                     <p>
-                     With Friends Hotel you can always travel worry free knowing that we're here if you need us. Our 
-                     award-winning customer service team speaks multiple languages, with English service available 24 hours 
-                     a day via phone, email. 
-                     </p>
+                        
+                        <p class="about-text">
+                        With Friends Hotel you can always travel worry free knowing that we're here if you need us. Our 
+                        award-winning customer service team speaks multiple languages, with English service available 24 hours 
+                        a day via phone, email. 
+                        </p>
                     </div>
                 </aside>
-        </section>
+            </section>
         <footer>
             <p>Friends Hotel, Copyright &copy; 2017</p>
         </footer>

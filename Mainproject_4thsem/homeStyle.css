@@ -247,32 +247,38 @@
 
         /*about us*/
         #main{
-            height: 500px;
+            height: 480px;
             padding: 18px;
         }
         aside#sidebar {
             float: right;
             width: 30%;
-            margin-top: 10px;
+            margin-top: 80px;
             margin-right: 90px;
         }
         
+        .about-text{
+            font-size: 20px;
+
+        }
+
         article#main-col {
             float: left;
             width: 50%;
-            margin-top: 10px;	
+            margin-top: 5px;	
             margin-left: 90px;
+            
         }
         
         .dark{
-            background-color: #36306d;
+            background-color: #524b8f;
             padding: 15px;
             color: white;
             font-size: 16px;
         }
         
         .page-title{
-            font-size: 20px;
+            font-size: 30px;
             font-weight: bold;
         }
 
