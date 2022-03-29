@@ -24,7 +24,7 @@
             background-color:	#D3D3D3;
             height: 89vh;
             display: grid;
-            grid-template-columns: 20% 80%;
+            grid-template-columns: 18% 82%;
         }
         .dash{
                 height: 89vh;
@@ -87,12 +87,13 @@
                         <li> <a href="room_category.php"><button class="active" style="color: red;">Rooms Catagory</button></a></li>
                         <li> <a href="room.php"><button>Room</button></a></li>
                         <li> <a href="reservation.php"><button>Reservation</button></a></li>
+                        <li> <a href="check.php"><button>Check in/out</button></a></li>
                     </ul>
                 </nav>
             </div>
             <div class="catagory">
                 <div style="font-size:18px;margin:10px 0px 10px;">
-                    Add Rooms Catagory
+                    Update Rooms Catagory
                 </div>  
                 <div class="catform">
                 <?php 
@@ -100,17 +101,17 @@
                         $select = "SELECT * FROM `room_category` WHERE cat_id=$updateid";
                         $result = mysqli_query($conn,$select);
                         $room = mysqli_fetch_assoc($result);
-                    ?>
+                ?>
                     <form id="Formcatagory" method="POST" enctype="multipart/form-data" onsubmit="event.preventDefault(); valid();">
                         <label>Category</label>
                         <span class="msgerr" id="err_category" >Fill the category</span>
-                        <input class="input" type="text" id="catagory" name="catagory" placeholder=<?= $room['catagory_name'];?> /></br>
+                        <input class="input" type="text" id="catagory" name="catagory" value="<?php echo $room['catagory_name'];?>" /></br>
                         <label>Price/Night</label>
                         <span class="msgerr" id="err_price" >Insert Price</span>
-                        <input class="input" type="number" id="price" name="price" placeholder=<?= $room['price'];?> /></br>
+                        <input class="input" type="number" id="price" name="price" value="<?php echo $room['price'];?>" /></br>
                         <label>Beds</label>
                         <span class="msgerr" id="err_beds" >Enter beds details</span>
-                        <input class="input" type="text" id="bed" name="bed" placeholder=<?= $room['beds'];?> /></br>
+                        <input class="input" type="text" id="bed" name="bed" value="<?php echo $room['beds'];?>" /></br>
                         <label>Image</label>
                         <input class="input" type="file" id="file" name="file" accept="image/*" 
                         onchange="document.getElementById('showimg').src=window.URL.createObjectURL(this.files[0]);" /></br>

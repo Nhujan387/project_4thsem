@@ -23,7 +23,7 @@
             background-color:	#D3D3D3;
             height: 89vh;
             display: grid;
-            grid-template-columns: 20% 80%;
+            grid-template-columns: 18% 82%;
         }
         .dash{
                 height: 89vh;
@@ -86,12 +86,13 @@
                         <li> <a href="room_category.php"><button >Rooms Catagory</button></a></li>
                         <li> <a href="room.php"><button class="active" style="color: red;">Room</button></a></li>
                         <li> <a href="reservation.php"><button>Reservation</button></a></li>
+                        <li> <a href="check.php"><button>Check in/out</button></a></li>
                     </ul>
                 </nav>
             </div>
             <div class="catagory">
                 <div style="font-size:18px;margin:10px 0px 10px;">
-                    Add Rooms
+                    Update Rooms
                 </div>  
                 <div class="catform">
                     <?php 
@@ -103,7 +104,7 @@
                     <form id="FormRoom" name="form" method="POST"  enctype="multipart/form-data" onsubmit="event.preventDefault(); validroom();">
                         <label>Room No</label>
                         <span class="msgerr" id="err_room" >Fill the room</span>
-                        <input class="input" type="text" id="room" name="room" placeholder=<?= $room['room_num']; ?> /></br>
+                        <input class="input" type="text" id="room" name="room" value="<?= $room['room_num']; ?>" /></br>
                         <label>Catagory</label>
                         <span class="msgerr" id="err_category" >Choose the category</span>
                         <select class="input" name="catagory" id="catagory">

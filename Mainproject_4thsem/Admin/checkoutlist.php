@@ -102,9 +102,9 @@
                         <li> <a href="admin.php" ><button >Admin</button></a></li>      
                         <li> <a href="room_category.php"><button >Rooms Catagory</button></a></li>
                         <li> <a href="room.php"><button>Room</button></a></li>
-                        <li> <a href="reservation.php"><button  class="active" style="color: red;">Reservation</button></a></li>
+                        <li> <a href="reservation.php"><button >Reservation</button></a></li>
                         <li> <a href="check.php"><button>Check-In</button></a></li>
-                        <li> <a href="checkoutlist.php"><button >Check-Out</button></a></li>
+                        <li> <a href="checkoutlist.php"><button  class="active" style="color: red;">Check-Out</button></a></li>
                     </ul>
                 </nav>
             </div>
@@ -121,17 +121,26 @@
                             <th>Room status</th>
                             <th>Check in date</th>
                             <th>Check out date</th>
-                            <th>Action</th>
+                            <th>Bill</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                            $displayquery = "SELECT reservation.rev_id, reservation.Username, reservation.Contact, reservation.Checkindate, reservation.Checkoutdate, reservation.status, room.room_num 
-                            FROM `reservation` INNER JOIN `room` on reservation.room_id = room.room_id;";
+                            $displayquery = "SELECT reservation.rev_id, reservation.Username, reservation.Contact, reservation.Checkindate, 
+                            reservation.Checkoutdate, reservation.status, room.room_num, room_category.price FROM 
+                            ((`reservation` INNER JOIN `room` on reservation.room_id = room.room_id) INNER JOIN
+                            `room_category` on reservation.cat_id = room_category.cat_id) ORDER BY rev_id DESC ";
                             $querydisplay = mysqli_query($conn,$displayquery);
-                            $i=1;
+
                             while($result = mysqli_fetch_array($querydisplay)){
-                                if($result['status'] == 0){
+                                if($result['status'] == 2){
+
+                                    $indate = date_create($result['Checkindate']);
+                                    $outdate = date_create($result['Checkoutdate']);
+
+                                    $days = date_diff($outdate,$indate);
+                                    
+
                                 ?>
                                     <tr>
                                         <td><?php echo $result['Username'];?> </td>
@@ -151,14 +160,7 @@
                                         </td>
                                         <td><?php echo $result['Checkindate'];?></td>
                                         <td><?php echo $result['Checkoutdate'];?></td>
-                                        <td>
-                                            <a href="confirm_reservation.php?rev_id=<?php echo $result['rev_id'];?>">
-                                                <button class="checkin"  >Checkin</button>
-                                            </a>
-                                            <a href="delete_reservation.php?rev_id=<?php echo $result['rev_id'];?>">
-                                                <button class="checkout"  >Cancel</button>
-                                            </a>
-                                        </td>
+                                        <td><?php echo $result['price']*$days->format('%a');?></td>
                                     </tr>
                             <?php    
                                 }}

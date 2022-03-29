@@ -54,7 +54,7 @@
                         <div style="font-size: 20px; font-family: Josefin Sans ; font-weight: bold; ">   
                         
                         </div>
-                            <a href="room_modal.php?room_id=<?php echo $result['room_id'];?>"
+                            <a href="room_modal.php?room_id=<?php echo $result['room_id'] ;?>&cat_id=<?php echo $_REQUEST['cat_id'] ;?>"
                             style="float: right; font-size: 18px;text-decoration:none; text-align:center;padding:6px; width: 100px; height: 35px ;
                             background-color: black; color: white; cursor: pointer; margin-top: 80px; border-radius:5px;">
                                 Book Room

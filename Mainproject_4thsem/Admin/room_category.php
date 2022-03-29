@@ -22,13 +22,14 @@
             .adbox{
                 background-color:	#D3D3D3;
                 display: grid;
-                grid-template-columns: 20% 80%;
+                grid-template-columns: 18% 82%;
             }
             .dash{
                     background-color: #9c9c9c;
                     display:flex;
                     justify-content: center;
                     padding: 5px;
+                    height: 89vh;
                 }
             ul{
                 list-style-type:none;
@@ -54,13 +55,13 @@
                 width: 120px;
             }
             .tablein{
-                width: 90%;
+                width: 98%;
                 margin: 0 auto;
             }
             table{
                 border-collapse: collapse;
                 border: 2px solid black;
-                width:100%;
+                width: 100%;
                 font-size: 18px;
                 background-color: white;
                 box-shadow: 0 8px 16px 0 rgba(0,0,0,1);
@@ -77,12 +78,14 @@
             .update{
                 border-radius: 4px;
                 color: black;
-                background-color: blue;
+                background: green;
                 text-decoration:none;
                 margin:3px;
                 padding:5px;
-                font-size:18px;
+                font-size:14px;
                 font-weight:bold;
+                width: 80px;
+                box-shadow:none;
             }
             .delete{
                 border-radius: 4px;
@@ -91,9 +94,10 @@
                 text-decoration:none;
                 margin:3px;
                 padding:5px;
-                font-size:18px;
+                font-size:14px;
                 font-weight:bold;
-                width: 70px;
+                width: 80px;
+                box-shadow:none;
             }
             .addcategory{
                 margin:10px;
@@ -114,6 +118,8 @@
                         <li> <a href="room_category.php"><button class="active" style="color: red;">Rooms Catagory</button></a></li>
                         <li> <a href="room.php"><button>Room</button></a></li>
                         <li> <a href="reservation.php"><button>Reservation</button></a></li>
+                        <li> <a href="check.php"><button>Check-In</button></a></li>
+                        <li> <a href="checkoutlist.php"><button >Check-Out</button></a></li>
                     </ul>
                 </nav>
             </div>
@@ -142,13 +148,13 @@
                                     <td><?php echo $fetch['catagory_name'];?> </td>
                                     <td><?php echo $fetch['price'];?> </td>
                                     <td><?php echo $fetch['beds'];?> </td>
-                                    <td><img src="<?php echo $fetch['image'];?>" height="100px" width="150px" > </td>
+                                    <td><img src="<?php echo $fetch['image'];?>" height="60px" width="120px" > </td>
                                     <td>
-                                        <a onclick="confirm()" class="update" href= "update_category.php?cat_id=<?php echo $fetch['cat_id'];?>">
-                                            Update 
+                                        <a  href= "update_category.php?cat_id=<?php echo $fetch['cat_id'];?>">
+                                            <button class="update" >Update </button>
                                         </a>
-                                        <a class="delete" href="delete_category.php?cat_id= <?php echo $fetch['cat_id']?>">
-                                            Remove
+                                        <a href="delete_category.php?cat_id= <?php echo $fetch['cat_id']?>">
+                                        <button class="delete" >Remove </button>
                                         </a>
                                     </td>
                                 </tr>

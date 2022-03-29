@@ -53,7 +53,7 @@
             background-color:	#D3D3D3;
             height: 89vh;
             display: grid;
-            grid-template-columns: 20% 80%;
+            grid-template-columns: 18% 82%;
         }
         .dash{
                 height: 89vh;
@@ -116,6 +116,8 @@
                         <li> <a href="room_category.php"><button class="active" style="color: red;">Rooms Catagory</button></a></li>
                         <li> <a href="room.php"><button>Room</button></a></li>
                         <li> <a href="reservation.php"><button>Reservation</button></a></li>
+                        <li> <a href="check.php"><button>Check-In</button></a></li>
+                        <li> <a href="checkoutlist.php"><button >Check-Out</button></a></li>
                     </ul>
                 </nav>
             </div>

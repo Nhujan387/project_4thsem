@@ -122,6 +122,7 @@
                                     <input type="number" name="phone" id="phone" class="PD-phone"
                                     placeholder="Your phone number" > 
                                     <div id="phone-error" class="error" style="font-size:14px;"></div>
+                                    
 
                                     <div class="BD-chck">    
                                         <div class="BD-chck1">
@@ -158,10 +159,11 @@
         $checkout = $_REQUEST['dateout'];
         $status = 0;
         $room_id = $_REQUEST['room_id'];
+        $cat_id =  $_REQUEST['cat_id'];
         $U_id = $_SESSION['username'];
 
-        $insert = "INSERT INTO `reservation`(`Username`, `Contact`, `Checkindate`, `Checkoutdate`, `status`, `room_id`, `U_id`) VALUES
-        ('$name','$phone','$checkin','$checkout','$status','$room_id','$U_id')";
+        $insert = "INSERT INTO `reservation`(`Username`, `Contact`, `Checkindate`, `Checkoutdate`, `status`, `room_id`, `U_id`, `cat_id`) VALUES
+        ('$name','$phone','$checkin','$checkout','$status','$room_id','$U_id','$cat_id')";
 
         $query = mysqli_query($conn,$insert);
     }

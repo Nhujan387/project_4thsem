@@ -22,7 +22,7 @@
             background-color:	#D3D3D3;
             height: 89vh;
             display: grid;
-            grid-template-columns: 20% 80%;
+            grid-template-columns: 18% 82%;
         }
         .tablein{
             width: 50%;
@@ -46,7 +46,7 @@
         }
         .ed{
             width: 70px;
-            background-color: blue;
+            background-color: red;
             font-weight:bold;
             font-size: 18px;
             padding:3px;
@@ -67,7 +67,6 @@
                 display:flex;
                 justify-content: center;
                 padding: 5px;
-                border-right:2px solid red;
             }
         ul{
             list-style-type:none;
@@ -94,6 +93,7 @@
                         <li> <a href="room_category.php"><button>Rooms Catagory</button></a></li>
                         <li> <a href="room.php"><button>Room</button></a></li>
                         <li> <a href="reservation.php"><button>Reservation</button></a></li>
+                        <li> <a href="check.php"><button>Check in/out</button></a></li>
                     </ul>
                 </nav>
             </div>
