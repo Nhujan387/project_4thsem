@@ -1,8 +1,16 @@
-<?php  
+<?php
     session_start();
-    include 'signmodal.php'; 
+    include 'db_configure.php';
+
+    if($_POST){
+        $checkin = $_REQUEST['checkin'];
+        $checkout = $_REQUEST['checkout'];
+
+        $checkdate = "SELECT * from reservation where status=2 And checkindate between '$checkin' AND '$checkout' ";
+        $querydatecheck = mysqli_query($conn,$checkdate);
+    }
+
 ?>
-<?php include 'db_configure.php' ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,7 +18,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="homeStyle.css"/>
-        <title>Document</title>
+        <title>Friend's | Room Availability</title>
     </head>
     <body>
         <div class="head" > 
@@ -32,9 +40,11 @@
                    <?php }?>
                 </ul>
             </nav>
-            <div class="Roombody" style="height:130vh" >
+            <div class="Roombody" >
                     <?php
-                        $displayquery =  "SELECT * FROM `room` WHERE `cat_id` = '$_REQUEST[cat_id]' order by room_num asc";
+                        $displayquery =  "SELECT room.room_id, room.room_num,room.image, room_category.catagory_name, room_category.cat_id, reservation.status FROM 
+                        ((`room` left JOIN `room_category` on room.cat_id = room_category.cat_id) left JOIN `reservation` on room.room_id = reservation.room_id) 
+                        Where reservation.status=2 ORDER by room.room_num DESC";
                         $querydisplay = mysqli_query($conn,$displayquery);
                         while($result = mysqli_fetch_array($querydisplay)){
                     ?>
@@ -53,7 +63,7 @@
                         <div style="font-size: 20px; font-family: Josefin Sans ; font-weight: bold; ">   
                         
                         </div>
-                            <a href="room_modal.php?room_id=<?php echo $result['room_id'] ;?>&cat_id=<?php echo $_REQUEST['cat_id'] ;?>"
+                            <a href="room_modal.php?room_id=<?php echo $result['room_id'] ;?>&cat_id=<?php echo $result['cat_id'] ;?>"
                             style="float: right; font-size: 18px;text-decoration:none; text-align:center;padding:6px; width: 100px; height: 35px ;
                             background-color: black; color: white; cursor: pointer; margin-top: 80px; border-radius:5px;">
                                 Book Room

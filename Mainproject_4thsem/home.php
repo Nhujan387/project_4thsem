@@ -1,23 +1,22 @@
 <?php 
     session_start();
-
-    include 'signmodal.php' 
+    if(!isset($_SESSION['username'])){
+        include 'signmodal.php' ;
+    }
+    
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Friend's Hotel</title>
         <link rel="stylesheet" href="homeStyle.css" />
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     </head>
     <body>
-        <div class="head" > 
-        <a href="home.php" style="color:black"><span style="color: red;">FRIENDS'</span>&nbsp;Hotel </a>
-        </div>
+            <div class="head" > 
+                <a href="home.php" style="color:black"><span style="color: red;">FRIENDS'</span>&nbsp;Hotel </a>
+            </div>
         
             <nav>
                 <ul>
@@ -39,16 +38,16 @@
         <div class="section">
             <div class="sectiontxt">Check Room Availability</div>
             <div class="subsectiontxt" >
-                <form>
+                <form method='POST' action="room_availability.php">
                     <div>
                         CheckIn Date
-                        <input style="font-size: 24px;" type="date" /> &nbsp;
+                        <input style="font-size: 24px;" type="date" name='checkin' required/> &nbsp;
                     
                         CheckOut Date
-                        <input style="font-size: 24px;" type="date" />
+                        <input style="font-size: 24px;" type="date" name='checkout' required />
                     </div>
                     <div>
-                        <input class="checkbutton"  type="button" value="Check Availability" />
+                        <input class="checkbutton" type="submit" value="Check Availability" />
                     </div>
                 </form>
             </div>
@@ -141,3 +140,4 @@
         </script>
     </body>
 </html>
+

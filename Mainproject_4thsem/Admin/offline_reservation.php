@@ -122,20 +122,23 @@
         $checkin=  $_REQUEST['checkin'];
         $checkout=  $_REQUEST['checkout'];
         $confirm=  $_REQUEST['confirm'];
+
         $room = $_REQUEST['room_id'];
+        $category = $_REQUEST['cat_id'];
 
-        $update = "INSERT INTO `reservation`(`Username`, `Contact`, `Checkindate`, `Checkoutdate`, `status`, `room_id`, `U_id`, `cat_id`) VALUES 
-        ('$name','$contact','$checkin','$checkout','$confirm','[value-6]','[value-7]','[value-8]','[value-9]')'";
 
-        if($update){
-            ?> <script>alert('User checked in successful');location.replace("reservation.php");</script><?php
+        $checkdate = "SELECT * from reservation where room_id=$room And checkindate between '$checkin' AND '$checkout' ";
+        $querydatecheck = mysqli_query($conn,$checkdate);
+
+        if($querydatecheck){
+            $insert = "INSERT INTO `reservation`(`Username`, `Contact`, `Checkindate`, `Checkoutdate`, `status`, `room_id`, `cat_id`) VALUES 
+                        ('$name','$contact','$checkin','$checkout','$confirm','$room','$category')";
+             if($insert){
+                ?> <script>alert('User checked in successful');location.replace("check.php");</script><?php
+            }
+            $query = mysqli_query($conn,$insert);
+        }else{
+            ?><script>alert('Sorry the Room is already reserved for that date.');location.replace("room.php");</script><?php
         }
-        $query = mysqli_query($conn,$update);
-
-       
     }
-
-
-
-
 ?>

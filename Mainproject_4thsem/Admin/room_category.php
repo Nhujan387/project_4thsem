@@ -63,7 +63,7 @@
                 border: 2px solid black;
                 width: 100%;
                 font-size: 18px;
-                background-color: white;
+                background-color: #F0FFF0;
                 box-shadow: 0 8px 16px 0 rgba(0,0,0,1);
             }
             th{
@@ -78,7 +78,7 @@
             .update{
                 border-radius: 4px;
                 color: black;
-                background: green;
+                background: blue;
                 text-decoration:none;
                 margin:3px;
                 padding:5px;

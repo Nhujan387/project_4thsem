@@ -54,7 +54,7 @@
             border: 2px solid black;
             width:100%;
             font-size: 18px;
-            background-color: white;
+            background-color: #F0FFF0;
             box-shadow: 0 8px 16px 0 rgba(0,0,0,1);
         }
         tr{
@@ -80,7 +80,7 @@
             .update{
                 border-radius: 4px;
                 color: black;
-                background: green;
+                background: blue;
                 text-decoration:none;
                 margin:3px;
                 padding:5px;
@@ -104,7 +104,7 @@
             .checkin{
                 border-radius: 4px;
                 color: black;
-                background: blue;
+                background: green;
                 text-decoration:none;
                 margin:3px;
                 padding:5px;
@@ -160,15 +160,17 @@
                                         <td> 
                                             
                                             <?php 
-                                                if($fetch['status'] == 0){
+                                                if($fetch['status'] == 2){
                                                     echo '<span style="color:green">Available</span>';
-                                                }else{
-                                                    echo '<span style="color:red">Unavailable</span>';
+                                                }else if($fetch['status'] == 0){
+                                                    echo '<span style="color:#FFFF00">Pending</span>';
+                                                }else if($fetch['status'] == 1){
+                                                    echo '<span style="color:red">Unavilable</span>';
                                                 }
                                             ?>
                                         </td>
                                         <td>
-                                            <a  href= "offline_reservation.php?room_num=<?php echo $fetch['room_id'];?>&cat_id=<?php echo $fetch['cat_id'];?>">
+                                            <a  href= "offline_reservation.php?room_id=<?php echo $fetch['room_id'];?>&cat_id=<?php echo $fetch['cat_id'];?>">
                                                 <button class="checkin">check-in</button>
                                             </a> </br>
                                             <a  href= "update_room.php?room_id=<?php echo $fetch['room_id'];?>">

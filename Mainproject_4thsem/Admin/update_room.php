@@ -120,12 +120,7 @@
 								}}
 							?>
                         </select>
-                        <label>Availability</label>
-                        <span class="msgerr" id="err_availability" >Check availability</span>
-                        <select class="input" name="status" id="status">
-                            <option value="0">Available</option>
-                            <option value="1">Unavailable</option>
-                        </select>
+                        
                         <label>Image</label>
                         <input class="input" type="file" id="file" name="file" accept="image/*" 
                         onchange="document.getElementById('showimg').src=window.URL.createObjectURL(this.files[0]);" /></br>
@@ -142,7 +137,6 @@
             function validroom(){
                 room = document.getElementById('room').value;
                 catagory = document.getElementById('category');
-                available = document.getElementById('status');
                 isvalidate = true;
 
                 if(room == ''){
@@ -157,12 +151,6 @@
                 }else{
                     document.getElementById('err_category').style.display = 'none';
                 }
-                if(available.value == ''){
-                    document.getElementById('err_availability').style.display = 'block';
-                    isvalidate = false;
-                }else{
-                    document.getElementById('err_availability').style.display = 'none';
-                }
 
                 if(isvalidate){
                     document.getElementById('FormRoom').submit();
@@ -176,7 +164,6 @@
     if($_POST){
         $room = $_REQUEST['room'];
         $category = $_REQUEST['catagory'];
-        $status = $_REQUEST['status'];
         $files = $_FILES['file'];
 
         $filename = $files['name'];
@@ -191,7 +178,7 @@
             $destinationfile = 'zimage/'.$filename;
             move_uploaded_file($filetmp,$destinationfile);
 
-            $update = "UPDATE `room` SET `room_num`='$room',`status`='$status',`image`='$destinationfile',`cat_id`='$category'
+            $update = "UPDATE `room` SET `room_num`='$room',`image`='$destinationfile',`cat_id`='$category'
             WHERE `room_id` = '$updateid'";
 
             if($update){

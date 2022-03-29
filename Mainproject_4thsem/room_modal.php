@@ -162,9 +162,15 @@
         $cat_id =  $_REQUEST['cat_id'];
         $U_id = $_SESSION['username'];
 
-        $insert = "INSERT INTO `reservation`(`Username`, `Contact`, `Checkindate`, `Checkoutdate`, `status`, `room_id`, `U_id`, `cat_id`) VALUES
-        ('$name','$phone','$checkin','$checkout','$status','$room_id','$U_id','$cat_id')";
+        $checkdate = "SELECT * from reservation where room_id=$room_id And checkindate between '$checkin' AND '$checkout' ";
+        $querydatecheck = mysqli_query($conn,$checkdate);
 
-        $query = mysqli_query($conn,$insert);
+        if($querydatecheck!=null){
+            $insert = "INSERT INTO `reservation`(`Username`, `Contact`, `Checkindate`, `Checkoutdate`, `status`, `room_id`, `U_id`, `cat_id`) VALUES
+            ('$name','$phone','$checkin','$checkout','$status','$room_id','$U_id','$cat_id')";
+            $query = mysqli_query($conn,$insert);
+        }else{
+            ?><script>alert('Sorry the Room is already reserved for that date.');location.replace("room.php");</script><?php
+        }
     }
 ?>

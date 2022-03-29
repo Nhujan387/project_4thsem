@@ -56,7 +56,7 @@
             border: 2px solid black;
             width:100%;
             font-size: 16px;
-            background-color: white;
+            background-color: #F0FFF0;
             box-shadow: 0 8px 16px 0 rgba(0,0,0,1);
         }
         th{
@@ -140,7 +140,7 @@
                                         <td>
                                             <?php 
                                                 if($result['status'] == 0){
-                                                    echo '<span style="color:yellow">Pending</span>';
+                                                    echo '<span style="color:#FFFF00">Pending</span>';
                                                 }else if($result['status'] == 1){
                                                     echo '<span style="color:green">Checked in</span>';
                                                 }else if($result['status'] == 2){
