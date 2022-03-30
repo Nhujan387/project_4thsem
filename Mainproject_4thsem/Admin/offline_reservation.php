@@ -130,9 +130,12 @@
         $checkdate = "SELECT * from reservation where room_id=$room And checkindate between '$checkin' AND '$checkout' ";
         $querydatecheck = mysqli_query($conn,$checkdate);
 
-        if($querydatecheck){
+        if(mysqli_num_rows($querydatecheck)==0){
             $insert = "INSERT INTO `reservation`(`Username`, `Contact`, `Checkindate`, `Checkoutdate`, `status`, `room_id`, `cat_id`) VALUES 
                         ('$name','$contact','$checkin','$checkout','$confirm','$room','$category')";
+                        
+            $update = "UPDATE `room` SET `Status`='$confirm' where room_id = $room";
+            $upadatequery = mysqli_query($conn,$update);
              if($insert){
                 ?> <script>alert('User checked in successful');location.replace("check.php");</script><?php
             }

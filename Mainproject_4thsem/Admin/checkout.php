@@ -128,11 +128,14 @@
         $confirm=  $_REQUEST['confirm'];
 
         $update = "UPDATE `reservation` SET `status`='$confirm' WHERE rev_id = '$_REQUEST[rev_id]'";
-
         if($update){
+            $updateroom="UPDATE `room` SET `Status`='$confirm' WHERE room_id = '$_REQUEST[room_id]'";
+            $upquery= mysqli_query($conn,$updateroom);
             ?> <script>alert('User checked out successful');location.replace("checkoutlist.php");</script><?php
         }
         $query = mysqli_query($conn,$update);
+
+       
 
        
     }

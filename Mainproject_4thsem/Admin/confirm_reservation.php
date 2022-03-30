@@ -133,6 +133,8 @@
         `Username`='$name',`Checkindate`='$checkin',`Checkoutdate`='$checkout',`status`='$confirm' WHERE rev_id = '$_REQUEST[rev_id]'";
 
         if($update){
+            $updateroom = "UPDATE `room` SET `Status`='$confirm' WHERE room_id = '$_REQUEST[room_id]'";
+            $queryupdate = mysqli_query($conn,$updateroom);
             ?> <script>alert('User checked in successful');location.replace("reservation.php");</script><?php
         }
         $query = mysqli_query($conn,$update);

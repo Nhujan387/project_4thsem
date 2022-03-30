@@ -169,6 +169,10 @@
             $insert = "INSERT INTO `reservation`(`Username`, `Contact`, `Checkindate`, `Checkoutdate`, `status`, `room_id`, `U_id`, `cat_id`) VALUES
             ('$name','$phone','$checkin','$checkout','$status','$room_id','$U_id','$cat_id')";
             $query = mysqli_query($conn,$insert);
+
+            $updateroom = "UPDATE `room` SET `Status`=$status WHERE room_id = '$_REQUEST[room_id]'";
+            $queryupdate = mysqli_query($conn,$updateroom);
+
         }else{
             ?><script>alert('Sorry the Room is already reserved for that date.');location.replace("room.php");</script><?php
         }

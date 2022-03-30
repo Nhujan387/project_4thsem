@@ -2,13 +2,16 @@
     session_start();
     include 'db_configure.php';
 
-    if($_POST){
+    /*
+        if($_POST){
         $checkin = $_REQUEST['checkin'];
         $checkout = $_REQUEST['checkout'];
-
-        $checkdate = "SELECT * from reservation where status=2 And checkindate between '$checkin' AND '$checkout' ";
+                        
+        $checkdate = "SELECT * from room where status=2";
+                    
         $querydatecheck = mysqli_query($conn,$checkdate);
-    }
+        if(mysqli_num_rows($querydatecheck)==0){
+        while($result = mysqli_fetch_array($querydatecheck)){*/
 
 ?>
 <!DOCTYPE html>
@@ -42,11 +45,11 @@
             </nav>
             <div class="Roombody" >
                     <?php
-                        $displayquery =  "SELECT room.room_id, room.room_num,room.image, room_category.catagory_name, room_category.cat_id, reservation.status FROM 
-                        ((`room` left JOIN `room_category` on room.cat_id = room_category.cat_id) left JOIN `reservation` on room.room_id = reservation.room_id) 
-                        Where reservation.status=2 ORDER by room.room_num DESC";
+                        $displayquery =  "SELECT room.room_id, room.room_num, room_category.catagory_name, room.image,room_category.cat_id, room.status FROM 
+                        `room` inner JOIN `room_category` on room.cat_id = room_category.cat_id where status=2 ORDER by room.room_num DESC";
                         $querydisplay = mysqli_query($conn,$displayquery);
                         while($result = mysqli_fetch_array($querydisplay)){
+                            
                     ?>
                 <div class="subroom" style="margin-bottom: 7px; border-radius:8px">
                     

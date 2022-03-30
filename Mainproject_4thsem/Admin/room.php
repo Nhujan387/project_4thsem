@@ -145,9 +145,8 @@
                     </thead>
                     <tbody>
                         <?php
-                            $displayquery = "SELECT room.room_id, room.room_num, room_category.catagory_name, room.image,room_category.cat_id, reservation.status FROM 
-                            ((`room` left JOIN `room_category` on room.cat_id = room_category.cat_id) 
-                             left JOIN `reservation` on room.room_id = reservation.room_id)ORDER by room.room_num DESC";
+                            $displayquery = "SELECT room.room_id, room.room_num, room_category.catagory_name, room.image,room_category.cat_id, room.status FROM 
+                            `room` inner JOIN `room_category` on room.cat_id = room_category.cat_id ORDER by room.room_num DESC";
                             $querydisplay = mysqli_query($conn,$displayquery);
                             $i=1;
                             while($fetch = mysqli_fetch_array($querydisplay)){

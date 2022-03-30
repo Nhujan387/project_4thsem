@@ -126,7 +126,7 @@
                     </thead>
                     <tbody>
                         <?php
-                            $displayquery = "SELECT reservation.rev_id, reservation.Username, reservation.Contact, reservation.Checkindate, reservation.Checkoutdate, reservation.status, room.room_num 
+                            $displayquery = "SELECT room.room_id, reservation.rev_id, reservation.Username, reservation.Contact, reservation.Checkindate, reservation.Checkoutdate, reservation.status, room.room_num 
                             FROM `reservation` INNER JOIN `room` on reservation.room_id = room.room_id;";
                             $querydisplay = mysqli_query($conn,$displayquery);
                             $i=1;
@@ -152,10 +152,10 @@
                                         <td><?php echo $result['Checkindate'];?></td>
                                         <td><?php echo $result['Checkoutdate'];?></td>
                                         <td>
-                                            <a href="confirm_reservation.php?rev_id=<?php echo $result['rev_id'];?>">
+                                            <a href="confirm_reservation.php?rev_id=<?php echo $result['rev_id'];?>&room_id=<?php echo $result['room_id'];?>">
                                                 <button class="checkin"  >Checkin</button>
                                             </a>
-                                            <a href="delete_reservation.php?rev_id=<?php echo $result['rev_id'];?>">
+                                            <a href="delete_reservation.php?rev_id=<?php echo $result['rev_id'];?>&room_id=<?php echo $result['room_id'];?>">
                                                 <button class="checkout"  >Cancel</button>
                                             </a>
                                         </td>
