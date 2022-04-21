@@ -4,7 +4,7 @@
 ?>
 <?php
     Global $unathorized;
-    if(isset($_POST['login'])){
+    if($_POST){
 
         $username = $_REQUEST['Adname'];
         $password = $_REQUEST['Adpassword'];

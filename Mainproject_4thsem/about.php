@@ -35,12 +35,12 @@
                     <div class="dark">
                         <p class="about-text">
                             Friends Hotel provides one-stop room booking services in 13 languages through our website and 
-                            mobile app. Hotel Manaslu enjoys a quiet yet central location in Kathmandu, just 7 km away from 
+                            mobile app. Friends Hotel enjoys a quiet yet central location in Kathmandu, just 7 km away from 
                             Tribhuvan International Airport. Guests can swim and relax at the outdoor pool surrounded by landscaped 
                             gardens. Free Wi-Fi is available.
                         </p>
                         <p class="about-text">
-                            The on-site restaurant serves a wide selection of Nepalese, Chinese and Continental dishes. Cocktails can be enjoyed at the bar.
+                            
                         </p>
                     </div>
                 </article> 

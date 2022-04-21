@@ -93,7 +93,8 @@
                         <li> <a href="room_category.php"><button>Rooms Catagory</button></a></li>
                         <li> <a href="room.php"><button>Room</button></a></li>
                         <li> <a href="reservation.php"><button>Reservation</button></a></li>
-                        <li> <a href="check.php"><button>Check in/out</button></a></li>
+                        <li> <a href="check.php"><button>Check-In</button></a></li>
+                        <li> <a href="checkoutlist.php"><button >Check-Out</button></a></li>
                     </ul>
                 </nav>
             </div>
