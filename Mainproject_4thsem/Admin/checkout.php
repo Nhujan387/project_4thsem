@@ -126,8 +126,12 @@
 <?php
     if($_POST){
         $confirm=  $_REQUEST['confirm'];
+        $name = $_REQUEST['username'];
+        $room =  $_REQUEST['room'];
+        $checkin=  $_REQUEST['checkin'];
+        $checkout=  $_REQUEST['checkout'];
 
-        $update = "UPDATE `reservation` SET `status`='$confirm' WHERE rev_id = '$_REQUEST[rev_id]'";
+        $update = "UPDATE `reservation` SET `Username`='$name',`Checkindate`='$checkin',`Checkoutdate`='$checkout', `status`='$confirm' WHERE rev_id = '$_REQUEST[rev_id]'";
         if($update){
             $updateroom="UPDATE `room` SET `Status`='$confirm' WHERE room_id = '$_REQUEST[room_id]'";
             $upquery= mysqli_query($conn,$updateroom);
