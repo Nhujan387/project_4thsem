@@ -38,6 +38,7 @@
                              
                             <label for="email"><b>Email</b></label> 
                             <span class="errormsg" id="for_email" >Email cannot be empty <br/></span> 
+                            <span class="errormsg" id="for_emailvr" >Email id already exists <br/></span> 
                             <input  class="inputstyle" type="text" placeholder="Enter email" name="email" id="email" > <br>
                             
                             <label for="psw"><b>Password</b></label> 
@@ -56,10 +57,12 @@
                 <div id="signin">
                     <form id="sign-in" method="POST" action="userlogin.php" onsubmit="event.preventDefault(); signin()" >
                         <label for="Email"><b>Email</b></label>
-                        <span class="errormsg"  id="for_log_email" >Email cannot be empty </span></br>
+                        <span class="errormsg"  id="for_log_email" >Email cannot be empty </span>
+                        <span class="errormsg"  id="for_logn_email" >Email not registered/invalid  </span></br>
                         <input class="inputstyle" type="text" placeholder="Enter email" name="logemail" id="logemail" > <br>
                         <label for="Psw"><b>Password</b></label> 
-                        <span class="errormsg"  id="for_log_password" >Password cannot be empty </span></br>
+                        <span class="errormsg"  id="for_log_password" >Password cannot be empty </span>
+                        <span class="errormsg"  id="for_logn_password" >Password incorrect </span></br>
                         <input class="inputstyle" type="password" placeholder="Enter password" name="logpsw" id="logpsw"  > <br> 
                         <button type="submit" name="sign-in" class="signbtn" >Sign In </button>
                     </form>

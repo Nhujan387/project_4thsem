@@ -48,28 +48,37 @@
                    <?php }?>
                 </ul>
             </nav>
-    <div id="Suite">
-                <div class="RoomBook" style="margin-top: 5px; background-color:#f8f8ff; border-radius:10px;">  
+    <div id="Suite" style="height:68vh;">
+                <div class="RoomBook" style="height:65vh;margin-top: 5px; background-color:#f8f8ff; border-radius:10px;">  
                     <div style=" margin: 10px; height: 59vh; ">
+                    <?php
+                    $checkin= $_REQUEST['cin'];
+                    $checkout= $_REQUEST['cout'];
+                    $catid = $_REQUEST['cid'];
+
+                    $displayprice = "SELECT price FROM `room_category` WHERE Cat_id = $catid";
+                    $pricequery = mysqli_query($conn,$displayprice);
+                    $showprice  = mysqli_fetch_assoc($pricequery);
+
+                    $indate = date_create($checkin);
+                    $outdate = date_create($checkout);
+                    $days = date_diff($outdate,$indate);
+                    $Totalprice = $showprice['price']*$days->format('%a');
+                    ?>
                         
-                        <fieldset class="room-fieldset">
-                            <legend><b>Reservation Successful</b></legend>
+                        <fieldset class="room-fieldset" style="height:62vh">
+                            <legend><b>Cancel Reservation</b></legend>
                             
-                            <div>Dear Sir/Madam,
-                            <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This is to notify you that your booking has been successfully confirmed and we are eager to provide our service
-                            to you.</div><br>
+                            
+                            <b><div>Are you sure you want to cancel your reservation??</div>
                             <p><u>Room Details</u></p>
                             <div>Room Number: <?php echo $_REQUEST['rno']?></div>
                             <div>Check-In: <?php echo $_REQUEST['cin']?></div>
                             <div>Check-In: <?php echo $_REQUEST['cout']?></div>
-                            <div>Price: <?php echo $_REQUEST['rs']?></div><br>
-                            <p>Our hotel is always ready to provide you with best services. Our Hotel is and always be in your service.<br/> 
-
-                            Please provide valid Govt. issued Address/ID proofs for all guests at check-in. (PAN Cards are not valid). <br/>
-                            
-                            Pay Reminder- 40% booking amount will be collected at the time of check-in. <br/>
-                            
-                            If you need any inquiries, please feel free to contact our customer service or office. We are always available to serve you.<br/>
+                            <div>Price: <?php echo $Totalprice?></div><br></b>
+                            <p>
+                                Our hotel always aims to provide our guest with best services. <br>
+                                We look forward to have you as our guest.
                             <br>
                             <b>Thanking you</b> </p>
                             <div style="text-align:right;">

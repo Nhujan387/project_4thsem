@@ -8,21 +8,23 @@
         <link rel="stylesheet" href="homeStyle.css">
         <link rel="stylesheet" href="contactStyle.css">
         <style>
-             body{
-                margin: 0;
-                padding: 0;
-                background-color: rgb(229, 255, 137);
+             .m-container{
+                height: 475px;
+                margin-top: 5px;
+                padding: 15px;
+                background-image: url(images/BGbagli.jpg);
+                background-size: cover;
             }
 
             .cont-container{
                 display: flex;
                 padding: 14px 18px;
-                position: absolute;
                 border-radius: 20px;
-                margin-left: 180px;
-                margin-top: 40px;
-                background-color: rgb(194, 223, 90);
-                box-shadow: 0 70px 60px -50px rgb(90, 88, 88);
+                margin-left: 130px;
+                margin-right: 130px ;
+                margin-top: 10px;
+                background-color: #4686b4;
+                box-shadow: 0 40px 160px 35px black;
 
             }
 
@@ -63,37 +65,39 @@
                    <?php }?>
                 </ul>
             </nav>
+            <div class="m-container">
             <div class="cont-container">
-            <div class="cont-map">
-                <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16801.698794103926!2d85.30631258075817!3d27.71351701495491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb18fde4b6fb07%3A0x7b0dcfa6468e82e2!2sHotel%20Friends%20Home!5e0!3m2!1sen!2snp!4v1647657893932!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe></p>
+                <div class="cont-map">
+                    <p><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d16801.698794103926!2d85.30631258075817!3d27.71351701495491!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb18fde4b6fb07%3A0x7b0dcfa6468e82e2!2sHotel%20Friends%20Home!5e0!3m2!1sen!2snp!4v1647657893932!5m2!1sen!2snp" width="600" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe></p>
+                </div>
+                <div class="cont-info">
+                    <h2><u>Contact Information</u></h2><br/>
+                    <div class="contContact">
+                        <h3>Address</h3> 
+                        <p>44600, Chhusya Galli, Jyatha, Kathmandu, Nepal</p>
+                    </div>
+
+                    <div class="contPhone"> 
+                        <h3>Phone</h3>
+                        <p>
+                            01-42123987
+                        </p>
+                    </div>
+
+                    <div class="contTelephone">
+                        <h3>Telephone</h3>
+                        <p>+977-9818123987</p>
+                    </div>
+
+                    <div class="contEmail">
+                        <h3>Email</h3>
+                        <p>friendshotel@gmail.com</p>
+                    </div>
+                </div>
             </div>
-            <div class="cont-info">
-                <h2>Contact Information</h2>
-                <div class="contContact">
-                    <h3>Address</h3> 
-                    <p>230, Hotel Marg, Lazimpat, Kathmandu, Nepal</p>
-                </div>
-
-                <div class="contPhone"> 
-                    <h3>Phone</h3>
-                    <p>
-                        ***-***-*****-****
-                    </p>
-                </div>
-
-                <div class="contTelephone">
-                    <h3>Telephone</h3>
-                    <p>********-*****</p>
-                </div>
-
-                <div class="contEmail">
-                    <h3>Email</h3>
-                    <p>example@gmail.com</p>
-                </div>
             </div>
-        </div>
-
-        
-        
+            <footer>
+            <p>Friends Hotel, Copyright &copy; 2017</p>
+            </footer>
     </body>
 </html>    

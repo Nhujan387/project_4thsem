@@ -15,7 +15,7 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="style.css" />
-        <title>Friends'</title>
+        <title>Friends' Hotel</title>
     </head>
     <style>
         .adbox{

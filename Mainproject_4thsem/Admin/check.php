@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Document</title>
+        <title>Friends' Hotel</title>
     </head>
     <style>
         *{

@@ -31,7 +31,7 @@
     <head>
         <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>Friends'</title>
+        <title>Friends' Hotel|Admin</title>
         <script>
             function Showpassword() {
             var x = document.getElementById("Adpassword");

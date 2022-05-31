@@ -44,9 +44,36 @@
                 </ul>
             </nav>
             <div class="Roombody" >
+            <div style="display:grid;grid-template-columns:50% 50%;">
+                <div style="border:1px solid black; width:60%;margin-left:200px;padding:5px;background-color:white;font-size:large;border-radius:5px;">
+                    <form action="" method="GET">
+                            <label style="font-size:large" >Filter by price:</label>
+                            <Select name="sorting" style="width:55%;font-size:large;" >
+                                <option value="">--Select Option--</option>
+                                <option value="High-to-low" <?php if(isset($_GET['sorting'])&& $_GET['sorting']=="High-to-low") {echo "selected";} ?>>High-to-low</option>
+                                <option value="Low-to-high"<?php if(isset($_GET['sorting'])&& $_GET['sorting']=="Low-to-high") {echo "selected";} ?>>Low-to-high</option>
+                            </Select>
+                            <input type="submit" value="Submit" style="color:white;background-color:black;cursor:pointer;font-size:large;border-radius:5px;"/>
+                    </form>
+                </div>
+                <div style="text-align:right;">
+                    <a href="room.php"><button style="border:1px solid white;background-color:black;color:white;cursor:pointer;border-radius:5px;font-size:large;padding:5px;margin-right:200px;">Check Room Category</button></a>
+                </div>
+                
+            </div><br/>
                     <?php
-                        $displayquery =  "SELECT room.room_id, room.room_num, room_category.catagory_name, room.image,room_category.cat_id, room.status FROM 
-                        `room` inner JOIN `room_category` on room.cat_id = room_category.cat_id where status=2 ORDER by room.room_num DESC";
+                    $sort_option = "Desc";
+
+                    if(isset($_GET['sorting']))
+                    {
+                        if($_GET['sorting']=="Low-to-high"){
+                            $sort_option = "Asc";
+                        }elseif($_GET['sorting']=="High-to-low"){
+                            $sort_option = "DESC";
+                        }
+                    }
+                        $displayquery =  "SELECT room.room_id, room.room_num, room_category.catagory_name,room_category.price,room_category.beds, room.image,room_category.cat_id, room.status FROM 
+                        `room` inner JOIN `room_category` on room.cat_id = room_category.cat_id where status=2 ORDER by room.room_num $sort_option";
                         $querydisplay = mysqli_query($conn,$displayquery);
                         while($result = mysqli_fetch_array($querydisplay)){
                             
@@ -58,17 +85,20 @@
                     </div>
                     <div class="descrip">
                         <div style="font-style: italic ;font-family: sans-serif; font-size: 25px; font-weight: bold; text-decoration: underline; height: 20%;">
-                            <?php echo $result['room_num'];?>
+                            <?php echo $result['catagory_name'];?>
                         </div>
                         <div style="font-size: 20px; font-family: Josefin Sans ; font-weight: bold; " >
-                        
+                            <?php echo $result['room_num'];?>
                         </div>
                         <div style="font-size: 20px; font-family: Josefin Sans ; font-weight: bold; ">   
-                        
+                            RS <?php echo $result['price'];?> / day
+                        </div>
+                        <div style="font-size: 20px; font-family: Josefin Sans ; font-weight: bold; ">   
+                            <?php echo $result['beds'];?>
                         </div>
                             <a href="room_modal.php?room_id=<?php echo $result['room_id'] ;?>&cat_id=<?php echo $result['cat_id'] ;?>"
                             style="float: right; font-size: 18px;text-decoration:none; text-align:center;padding:6px; width: 100px; height: 35px ;
-                            background-color: black; color: white; cursor: pointer; margin-top: 80px; border-radius:5px;">
+                            background-color: black; color: white; cursor: pointer; margin-top: 25px; border-radius:5px;">
                                 Book Room
                         </a>
                     </div>

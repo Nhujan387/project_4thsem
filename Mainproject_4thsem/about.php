@@ -31,13 +31,14 @@
 
             <section id="main">
                 <article id="main-col">
-                    <h1 class="page-title">About us</h1>
+                    <h1 class="page-title" style="text-shadow:1px 1px white">About us</h1>
                     <div class="dark">
                         <p class="about-text">
-                            Friends Hotel provides one-stop room booking services in 13 languages through our website and 
-                            mobile app. Friends Hotel enjoys a quiet yet central location in Kathmandu, just 7 km away from 
-                            Tribhuvan International Airport. Guests can swim and relax at the outdoor pool surrounded by landscaped 
-                            gardens. Free Wi-Fi is available.
+                            Friends' Hotel provides one-stop room booking services in easiest way through our website. 
+                            Friends' Hotel enjoys a quiet yet central location in Jatha,Kathmandu, just 6.5 km away from 
+                            Tribhuvan International Airport. As our hotel is near to thamel area also known as tourist spot, guests can easily find any items for the purchase.
+                            Religious spots are also only a short distances away from our hotel. Our location is also termed as Chinatown as landscape is heavily populated with Chinese businesses. Our Hotel will provide 
+                            best combo of tradition and tourist experiences.
                         </p>
                         <p class="about-text">
                             
@@ -46,13 +47,13 @@
                 </article> 
 
                 <aside id="sidebar">
-                <h3 class="page-title">What We Do?</h3>
+                <h3 class="page-title" style="text-shadow:1px 1px white">What We Do?</h3>
                     <div class="dark">
                         
                         <p class="about-text">
-                        With Friends Hotel you can always travel worry free knowing that we're here if you need us. Our 
+                        With Friends' Hotel you can always travel worry free knowing that we're here if you need us. Our 
                         award-winning customer service team speaks multiple languages, with English service available 24 hours 
-                        a day via phone, email. 
+                        a day via phone, email. We provide you with the 24 hours services. Free Wi-Fi is available.
                         </p>
                     </div>
                 </aside>

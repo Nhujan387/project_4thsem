@@ -15,7 +15,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="homeStyle.css" />
-        <title>Friend's: Reservation success</title>
+        <title>Friend's: Reservation information</title>
         <style>
             #Suite{
                 background-image: url(images/BGbagli.jpg);
@@ -48,12 +48,27 @@
                    <?php }?>
                 </ul>
             </nav>
-    <div id="Suite">
-                <div class="RoomBook" style="margin-top: 5px; background-color:#f8f8ff; border-radius:10px;">  
+    <div id="Suite" style="height:68vh;">
+                <div class="RoomBook" style="height:65vh;margin-top: 5px; background-color:#f8f8ff; border-radius:10px;">  
                     <div style=" margin: 10px; height: 59vh; ">
+                    <?php
+                    $checkin= $_REQUEST['cin'];
+                    $checkout= $_REQUEST['cout'];
+                    $catid = $_REQUEST['cid'];
+
+                    $displayprice = "SELECT price FROM `room_category` WHERE Cat_id = $catid";
+                    $pricequery = mysqli_query($conn,$displayprice);
+                    $showprice  = mysqli_fetch_assoc($pricequery);
+
+                    $indate = date_create($checkin);
+                    $outdate = date_create($checkout);
+                    $days = date_diff($outdate,$indate);
+                    $Totalprice = $showprice['price']*$days->format('%a');
+                    ?>
+
                         
-                        <fieldset class="room-fieldset">
-                            <legend><b>Reservation Successful</b></legend>
+                        <fieldset class="room-fieldset" style="height:62vh">
+                            <legend><b>Reservation Information</b></legend>
                             
                             <div>Dear Sir/Madam,
                             <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This is to notify you that your booking has been successfully confirmed and we are eager to provide our service
@@ -62,7 +77,7 @@
                             <div>Room Number: <?php echo $_REQUEST['rno']?></div>
                             <div>Check-In: <?php echo $_REQUEST['cin']?></div>
                             <div>Check-In: <?php echo $_REQUEST['cout']?></div>
-                            <div>Price: <?php echo $_REQUEST['rs']?></div><br>
+                            <div>Price: <?php echo $Totalprice?></div><br>
                             <p>Our hotel is always ready to provide you with best services. Our Hotel is and always be in your service.<br/> 
 
                             Please provide valid Govt. issued Address/ID proofs for all guests at check-in. (PAN Cards are not valid). <br/>
@@ -73,7 +88,8 @@
                             <br>
                             <b>Thanking you</b> </p>
                             <div style="text-align:right;">
-                                <a href="room.php"><button class="BD-submit">Back</button></a>
+                            <a href="Editreservation.php?rid=<?= $_REQUEST['rid'] ?>&&rno=<?= $_REQUEST['rno']?>&&cin=<?= $_REQUEST['cin']?>&&cout=<?= $_REQUEST['cout']?>&&rs=<?= $_REQUEST['rs']?>&&nm=<?= $_REQUEST['nm']?>"><button style="width:10%;background-color:green;font-size:large;border:1px solid black;border-radius:5px">Edit</button></a>
+                            <a href="Cancelreservation.php?cid=<?= $catid ?>&&rid=<?= $_REQUEST['rid'] ?>&&rno=<?= $_REQUEST['rno']?>&&cin=<?= $_REQUEST['cin']?>&&cout=<?= $_REQUEST['cout']?>&&rs=<?= $_REQUEST['rs']?>&&nm=<?= $_REQUEST['nm']?>"><button style="width:30%;background-color:red;font-size:large;border:1px solid black;border-radius:5px">Cancel Reservation</button></a>
                             </div>
                         </fieldset>
                         

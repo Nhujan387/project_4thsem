@@ -24,7 +24,7 @@
             display:flex;
             align-items:center;
             justify-content: center;
-            padding: 0px 50px 0px 50px;
+            padding: 0px 0px 0px 0px;
             border-bottom: 2px solid red;
             border-top: 2px solid red;
             margin-top: 70px;
@@ -37,6 +37,7 @@
         nav ul{
             display:flex;
             list-style:none;
+            
         }
 
         nav ul li{
@@ -47,7 +48,7 @@
             background-color: black;
             color:white;
             text-decoration: none;
-            font-size:26px;
+            font-size:25px;
             font-weight: 500;
             letter-spacing: 1px;
             padding:8px 10px;
@@ -63,7 +64,7 @@
             background: black;
             color: red;
             border-color: red;
-            font-size: 28px;
+            
         }
 
         nav .menu-button i{
@@ -82,7 +83,6 @@
         .checkbutton{
             font-size: 24px; 
             border-radius: 8px; 
-            margin: 5px; 
             width: 20%; 
             box-shadow: 2px 2px rgba(0, 0, 0, 0.9); 
             border: none; 
@@ -247,8 +247,12 @@
 
         /*about us*/
         #main{
-            height: 480px;
-            padding: 18px;
+            height: 475px;
+            margin-top: 5px;
+            padding: 15px;
+            background-image: url(images/BGbagli.jpg);
+            background-size: cover;
+            
         }
         aside#sidebar {
             float: right;
@@ -271,7 +275,8 @@
         }
         
         .dark{
-            background-color: #524b8f;
+            background-color: #4686b4;
+            border-radius: 10px;
             padding: 15px;
             color: white;
             font-size: 16px;

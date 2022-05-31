@@ -136,48 +136,53 @@
                    <?php }?>
                 </ul>
             </nav>
-    <div id="Suite">
-                <div class="RoomBook" style="margin-top: 5px; background-color:#f8f8ff; border-radius:10px;">  
+    <div id="Suite" style="height:68vh;">
+                <div class="RoomBook" style="height:65vh;margin-top: 5px; background-color:#f8f8ff; border-radius:10px;">  
                     <div style=" margin: 10px; height: 59vh; ">
                         <?php
-                            $displayquery = "SELECT * FROM `room` WHERE `room_id` = '$_REQUEST[room_id]'";
+                            $displayquery = "SELECT r.rev_id, r.Username,r.Contact,r.Checkindate,r.Checkoutdate,
+                            ro.room_id,ro.room_num,c.cat_id,c.catagory_name,c.price from reservation as r inner join room 
+                            as ro on r.room_id=ro.room_id inner join room_category as c on r.cat_id = c.cat_id  
+                            where  ro.room_id = '$_REQUEST[rid]'";
+
                             $querydisplay = mysqli_query($conn,$displayquery);
 
                             $result = mysqli_fetch_array($querydisplay)
                         ?>
 
                         <form id="SuiteRoom" action="" method="POST" onsubmit="event.preventDefault(); validateDetails()">
-                            <fieldset class="room-fieldset">
+                            <fieldset class="room-fieldset" style="height:62vh">
                             <legend>Book</legend>
                                 <p style="font-size:24px;text-decoration:underline; margin-bottom:5px; "><?= $result['room_num']; ?></p> 
                                 <label for="username">Full Name:</label>   <br />
                                     <input type="text" class="PD-name" name="username" id="username" placeholder="Your full name"
-                                    title="please enter in more than three letters"> 
+                                    title="please enter in more than 6 letters " value="<?= $result['Username'] ?>" > 
                                     <div id="username-error" class="error" style="font-size:14px;"></div>
             
                                 <label for="phone">Contact No:</label> <br />
                                     <input type="number" name="phone" id="phone" class="PD-phone"
-                                    placeholder="Your phone number" > 
+                                    placeholder="Your phone number" value="<?= $result['Contact'] ?>"> 
                                     <div id="phone-error" class="error" style="font-size:14px;"></div>
                                     
 
                                     <div class="BD-chck">    
                                         <div class="BD-chck1">
                                             <label for="date">Checkin date:</label>
-                                            <input id="datein" class="BD-date" type="date" name="datein" >
+                                            <input id="datein" class="BD-date" type="date" name="datein" value="<?= $result['Checkindate'] ?>">
                                             <div id="datein-error" class="error" style="font-size:14px;"></div> 
                                             <div id="datepin-error" class="error" style="font-size:14px;"></div> 
                                         </div>    
                                         <div class="BD-chck2">
                                             <label for="date">Checkout date:</label>
-                                            <input id="dateout" class="BD-date" type="date" name="dateout"  >
+                                            <input id="dateout" class="BD-date" type="date" name="dateout" value="<?= $result['Checkoutdate'] ?>" >
                                             <div id="dateout-error" class="error" style="font-size:14px;"></div> <br />
                                         </div>
                                         
                                     </div>
                                     <p id="Checkdaterror" class="error" style="font-size:14px;"></p>
                                     <div style="text-align:right;">
-                                        <input type="submit" class="BD-submit" value="Submit">
+                                        <input type="submit" style="width:30%;color:white;background-color:red;font-size:x-large;border:1px solid black;border-radius:5px"
+                                         value="Confirm Edit">
                                     </div>
                             </fieldset>
                         </form>
@@ -197,21 +202,23 @@
         $checkin = $_REQUEST['datein'];
         $checkout = $_REQUEST['dateout'];
         $status = 0;
-        $room_id = $_REQUEST['room_id'];
-        $cat_id =  $_REQUEST['cat_id'];
+        $room_id = $_REQUEST['rid'];
+        $cat_id =  $result['cat_id'];
         $U_id = $_SESSION['username'];
+        $rev_id = $result['rev_id'];
 
-        $checkdate = "SELECT * from reservation where room_id=$room_id And checkindate between '$checkin' AND '$checkout' ";
+        /*$checkdate = "SELECT * from reservation where room_id=$room_id And checkindate between '$checkin' AND '$checkout' ";
         $querydatecheck = mysqli_query($conn,$checkdate);
 
 
         if(mysqli_num_rows($querydatecheck)>0){
             ?><script>alert('Sorry the Room is already reserved for that date.');location.replace("room_list.php?cat_id=<?= $cat_id ?>");</script><?php
-        }else{
+        }else{*/
             
-            $insert = "INSERT INTO `reservation`(`Username`, `Contact`, `Checkindate`, `Checkoutdate`, `status`, `room_id`, `U_id`, `cat_id`) VALUES
-            ('$name','$phone','$checkin','$checkout','$status','$room_id','$U_id','$cat_id')";
-            $query = mysqli_query($conn,$insert);
+            $updatereservation = "UPDATE `reservation` SET `Username`='$name',`Contact`='$phone',
+            `Checkindate`='$checkin',`Checkoutdate`='$checkout',`status`='$status',`room_id`='$room_id',
+            `U_id`='$U_id',`cat_id`='$cat_id' WHERE rev_id = $rev_id ";
+            $query = mysqli_query($conn,$updatereservation);
             
             if($query){
 
@@ -219,7 +226,7 @@
                 $mailquery = mysqli_query($conn,$checkmail);
                 $mailid = mysqli_fetch_assoc($mailquery);
 
-                $displayprice = "SELECT price FROM `room_category` WHERE Cat_id = '$_REQUEST[cat_id]'";
+                $displayprice = "SELECT price FROM `room_category` WHERE Cat_id = '$cat_id'";
                 $pricequery = mysqli_query($conn,$displayprice);
                 $showprice  = mysqli_fetch_assoc($pricequery);
 
@@ -233,12 +240,12 @@
                 $headers .="Content-type:text/html; charset=iso-8859-1"."\r\n";
                 $headers .="From: maharjannhuj@gmail.com"."\r\n";
 
-                $subject = "Booking Successful";
+                $subject = "Booking Updated Successful";
                 $email = $mailid["Email"];
                 $body = "<div><b><u>Friend's Hotel</u></b><div><br/><hr/>
                         <div>TO,</div>
                         <div>$name</div><br/>
-                        <div>Subject= Successful Room Reservation.</div><br/>
+                        <div>Subject= Updated Room Reservation Successful .</div><br/>
                         <div>Dear Sir/Madam,
                         <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This letter informs you that your booking has been successfully confirmed and we are eager to provide our service
                         to you.</div>
@@ -262,12 +269,12 @@
                 if($query){
                     ?><script>location.replace("reservation_successful.php?rno=<?= $result['room_num'];?>&&cin=<?= $checkin; ?>&&cout=<?= $checkout; ?>&&rs=<?= $Totalprice; ?>")</script><?php
                 }
-            }
+           }
 
             $updateroom = "UPDATE `room` SET `Status`=$status WHERE room_id = '$_REQUEST[room_id]'";
             $queryupdate = mysqli_query($conn,$updateroom);
 
                 
-        }
+        /*}*/
     }
 ?>

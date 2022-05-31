@@ -25,10 +25,10 @@ include 'db_configure.php';
             $_SESSION['username'] = $email_check['U_id'];
             header("location:home.php");
         }else{
-            echo "password incorrect";
+            echo "<script type='text/javascript'>alert('password incorrect');location.replace('home.php');</script>";
         }
     }else{
-        echo "invalid email";
+        echo "<script type='text/javascript'>alert('Email not registered/invalid');location.replace('home.php');</script>";
     }
 
     mysqli_close($conn);

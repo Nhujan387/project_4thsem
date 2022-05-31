@@ -12,6 +12,13 @@
         <title>Friend's Hotel</title>
         <link rel="stylesheet" href="homeStyle.css" />
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <style>
+            .errorer{
+                display:none;
+                color:red;
+                text-align:center;
+            }
+        </style>
     </head>
     <body>
             <div class="head" > 
@@ -20,7 +27,7 @@
         
             <nav>
                 <ul>
-                    <li> <a href="#" ><button class="active" style="color: red;">Home</button></a></li>      
+                    <li> <a href="" ><button class="active" style="color: red;">Home</button></a></li>      
                     <li> <a href="room.php"><button>Rooms</button></a></li>
                     <li> <a href="about.php"><button>About us</button></a></li>
                     <li> <a href="Contact.php"><button>Contact us</button></a></li>
@@ -38,13 +45,20 @@
         <div class="section">
             <div class="sectiontxt">Check Room Availability</div>
             <div class="subsectiontxt" >
-                <form method='POST' action="room_availability.php">
-                    <div>
+                <form id="dateroom" method='POST' action="room_availability.php" onsubmit="event.preventDefault(); checkdate()">
+                    <div style="margin:0 auto;width:55%;">
                         CheckIn Date
-                        <input style="font-size: 24px;" type="date" name='checkin' required/> &nbsp;
-                    
+                        <input style="font-size: 24px;" type="date" id="datein" name='checkin'/> 
+                        
+                        &nbsp;
                         CheckOut Date
-                        <input style="font-size: 24px;" type="date" name='checkout' required />
+                        <input style="font-size: 24px;" type="date" id="dateout" name='checkout' />
+                        <table style="width:100%;">
+                            <tr>
+                                <td><div id="datein-error" class="errorer" style="font-size:14px;"></div><td><div id="datepin-error" class="errorer" style="font-size:14px;"></div> </td> </td>
+                                <td ><div id="dateout-error" class="errorer" style="font-size:14px;"></div><td><div id="Checkdaterror" class="error" style="font-size:14px;"></div></td></td>
+                            </tr>
+                        </table>
                     </div>
                     <div>
                         <input class="checkbutton" type="submit" value="Check Availability" />
@@ -119,6 +133,59 @@
                 <p>Friends' Hotel, Copyright &copy; 2022</p>
             </footer>
         <script>
+        function checkdate(){
+            today = new Date(new Date().getTime() - 24*60*60*1000);
+            checkin = new Date(document.getElementById('datein').value);
+            checkout = new Date(document.getElementById('dateout').value);
+            checkinemp = document.getElementById('datein').value;
+            checkoutemp = document.getElementById('dateout').value;
+            dateError = document.getElementById('datein-error');
+            datepError = document.getElementById('datepin-error');
+            dateoutError = document.getElementById('dateout-error');
+            Checkdaterror = document.getElementById('Checkdaterror');
+            validate = true;
+
+            if(checkinemp == ''){
+                dateError.innerHTML="Check-in date required";
+                dateError.style.display="block";
+                validate = false;
+            }else{
+                dateError.style.display="none";
+            }
+
+            if(checkin < today){
+                dateError.style.display="none";
+                datepError.innerHTML="Check-in date cannot be past";
+                datepError.style.display="block";
+                validate = false;
+            }
+            else{
+                datepError.style.display="none";
+            }
+
+            if(checkoutemp == ''){
+                dateoutError.innerHTML="Check-out date required";
+                dateoutError.style.display="block";
+                validate = false;
+            }else{
+                dateoutError.style.display="none";
+
+                
+            }
+            if(checkin >= checkout){   
+                Checkdaterror.innerHTML = "Check-out date cannot be same or before Check-in date";
+                Checkdaterror.style.display="block";
+                validate = false;
+            }else{
+                Checkdaterror.style.display="none";
+               
+            }
+            if(validate == true){
+                document.getElementById("dateroom").submit();
+            }
+
+        }
+
             var slideIndex = 1;
             showDivs(slideIndex);
 
