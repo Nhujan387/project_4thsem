@@ -87,7 +87,7 @@
                                 }else{
                                     while($result = mysqli_fetch_array($notifyquery)){
                                     ?>
-                                    <a href="resevationsuccess.php?cid=<?=$result['cat_id'] ?>&&rid=<?=$result['room_id'] ?>&&rno=<?= $result['room_num']?>&&cin=<?= $result['Checkindate']?>&&cout=<?= $result['Checkoutdate']?>&&rs=<?= $result['price']?>&&nm=<?= $result['Username']?>" style="text-decoration-line:none;">
+                                    <a href="resevationsuccess.php?revid=<?=$result['rev_id'] ?>&&cid=<?=$result['cat_id'] ?>&&rid=<?=$result['room_id'] ?>&&rno=<?= $result['room_num']?>&&cin=<?= $result['Checkindate']?>&&cout=<?= $result['Checkoutdate']?>&&rs=<?= $result['price']?>&&nm=<?= $result['Username']?>" style="text-decoration-line:none;">
                                        <div style="background-color:white;border:1px solid black;height:7vh;width:100%;margin-bottom:4px;border-radius:5px;">
                                             <p style="color:black;font-weight:bold;">Your Booking for <?= $result['room_num']?> of category <?= $result['catagory_name'] ?> is successful for date <?= $result['Checkindate']?> to <?= $result['Checkoutdate']?>.</p>
                                        </div>

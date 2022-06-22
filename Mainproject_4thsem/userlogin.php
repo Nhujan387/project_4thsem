@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 include 'db_configure.php';
@@ -23,7 +24,24 @@ include 'db_configure.php';
 
         if($pass_decode){
             $_SESSION['username'] = $email_check['U_id'];
-            header("location:home.php");
+            ?>
+           <script>
+               function showmsgl(){
+                   document.getElementById('ssmodel').style.visibility="visible";
+               }setTimeout("showmsgl()",500);
+
+               function hidemsgl(){
+                   document.getElementById('ssmodel').style.visibility="hidden";
+               }setTimeout("hidemsgl()",9000);
+
+               function home(){
+                    location.replace('home.php');
+               }setTimeout("home()",500);
+           </script>
+           
+           
+           
+           <?php
         }else{
             echo "<script type='text/javascript'>alert('password incorrect');location.replace('home.php');</script>";
         }

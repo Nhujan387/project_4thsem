@@ -127,7 +127,7 @@
                     <tbody>
                         <?php
                             $displayquery = "SELECT room.room_id, reservation.rev_id, reservation.Username, reservation.Contact, reservation.Checkindate, reservation.Checkoutdate, reservation.status, room.room_num 
-                            FROM `reservation` INNER JOIN `room` on reservation.room_id = room.room_id;";
+                            FROM `reservation` INNER JOIN `room` on reservation.room_id = room.room_id where reservation.status IN (0 , 3)";
                             $querydisplay = mysqli_query($conn,$displayquery);
                             $i=1;
                             while($result = mysqli_fetch_array($querydisplay)){
@@ -160,9 +160,7 @@
                                             </a>
                                         </td>
                                     </tr>
-                            <?php    
-                                }}
-                            ?>
+                            <?php }}?>
                     </tbody>
                     </table>
             </div>

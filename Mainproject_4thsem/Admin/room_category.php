@@ -153,9 +153,6 @@
                                         <a  href= "update_category.php?cat_id=<?php echo $fetch['cat_id'];?>">
                                             <button class="update" >Update </button>
                                         </a>
-                                        <a href="delete_category.php?cat_id= <?php echo $fetch['cat_id']?>">
-                                        <button class="delete" >Remove </button>
-                                        </a>
                                     </td>
                                 </tr>
                         <?php    

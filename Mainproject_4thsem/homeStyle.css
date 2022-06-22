@@ -14,7 +14,7 @@
             height: 10vh;
             overflow: hidden;
             position: fixed;
-            top: 0;
+            top:0;
             background-color: white;
             border-bottom: 2px solid red;
         }

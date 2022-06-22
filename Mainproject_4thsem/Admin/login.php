@@ -15,7 +15,7 @@
             $_SESSION['Adname'] = $row['A_name'];
             $_SESSION['Adpassword'] = $row['password'];
 		}else{
-			$unathorized = "You ain't admin, imposter"  ;
+			$unathorized = "You are not admin"  ;
 		}
         if(isset($_SESSION["Adname"])){
             header('location:admin.php');

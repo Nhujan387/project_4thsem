@@ -32,6 +32,7 @@
                     <hr>
                 <div id="signup">
                         <form method="POST" id="signup-form" onsubmit="event.preventDefault(); signupvalidate()" >
+                        <input type="number" name="forsignin" value="1" hidden>
                             <label for="name"><b>Full Name</b></label>
                             <span class="errormsg"  id="for_name" >User name cannot be empty </span></br>
                             <input class="inputstyle" type="text" placeholder="Enter your name" name="name" id="name" > <br>
@@ -55,7 +56,8 @@
                         </form>
                 </div>
                 <div id="signin">
-                    <form id="sign-in" method="POST" action="userlogin.php" onsubmit="event.preventDefault(); signin()" >
+                    <form id="sign-in" method="POST" action="" onsubmit="event.preventDefault(); signin()" >
+                    <input type="number" name="forsignin" value="2" hidden>
                         <label for="Email"><b>Email</b></label>
                         <span class="errormsg"  id="for_log_email" >Email cannot be empty </span>
                         <span class="errormsg"  id="for_logn_email" >Email not registered/invalid  </span></br>
@@ -69,6 +71,26 @@
                 </div> 
             </div> 
         </div>
+        <div id="mode" style="width:100%;height: 100vh;position: fixed;top: 0;visibility:hidden;">
+                <div style="margin-top:100px;font-size:19px;text-align:center;height:4vh;color:white;background-color:green;border-radius:5px;margin-left:8px;width:350px">
+                    Signup Successful. Please signin before start
+                </div>
+           </div>
+           <div id="ssmode" style="width:100%;height: 100vh;position: fixed;top: 0;visibility:hidden;">
+                <div style="margin-top:100px;font-size:19px;height:8vh;text-align:center;color:white;background-color:red;border-radius:5px;margin-left:8px;width:200px">
+                Email Id already exists <br> Try using other id
+                </div>
+           </div>
+           <div id="ssmodel" style="width:100%;height: 100vh;position: fixed;top: 0;visibility:hidden;">
+                <div style="margin-top:100px;font-size:19px;height:4vh;text-align:center;color:white;background-color:Green;border-radius:5px;margin-left:8px;width:180px">
+                Sign in successful.
+                </div>
+           </div>
+           <div id="ssmodelo" style="width:100%;height: 100vh;position: fixed;top: 0;visibility:hidden;">
+                <div style="margin-top:100px;font-size:19px;height:4vh;text-align:center;color:white;background-color:red;border-radius:5px;margin-left:8px;width:180px">
+                Invalid Password
+                </div>
+           </div>
     <script>
         function signin(){
                 email = document.getElementById('logemail').value;
@@ -151,8 +173,10 @@
 
 <?php
     include 'db_configure.php';
-    
+
     if($_POST){
+    
+    if($_POST['forsignin']==1){
         $full_name = $_REQUEST['name'];
         $email = $_REQUEST['email'];
         $password = $_REQUEST['psw'];
@@ -162,12 +186,97 @@
         $check = mysqli_query($conn,$checkuser);
 
         if(mysqli_num_rows($check)>0) {
-            $erroruser = 'Email Id already exists \n Try using other id'; 
-            echo "<script type='text/javascript'>alert('$erroruser');</script>";
+            ?>
+           <script>
+               function showmsg(){
+                   document.getElementById('ssmode').style.visibility="visible";
+               }setTimeout("showmsg()",0);
+
+               function hidemsg(){
+                   document.getElementById('ssmode').style.visibility="hidden";
+               }setTimeout("hidemsg()",3000);
+           </script>
+           
+           
+           
+           <?php
         }else{
             $conn->query("INSERT INTO `signup` (`U_id`, `Full_name`, `Email`, `Password`)
             VALUES ('','$full_name', '$email','$enc_password')") or die(mysqli_error());
+
+           ?>
+           <script>
+               function showmsg(){
+                   document.getElementById('mode').style.visibility="visible";
+               }setTimeout("showmsg()",0);
+
+               function hidemsg(){
+                   document.getElementById('mode').style.visibility="hidden";
+               }setTimeout("hidemsg()",3000);
+           </script>
+           
+           
+           
+           <?php
         }      
     }
+    if($_POST['forsignin']==2){
+
+        $email = $_REQUEST['logemail'];
+        $password = $_REQUEST['logpsw'];
+        $query = ("SELECT * FROM `signup` WHERE `Email` = '$email'") or die(mysqli_error());
+        $querycheck = mysqli_query($conn,$query);
+    
+        $fetch = mysqli_num_rows($querycheck);
+        
+    
+        if($fetch!=0){
+            $email_check = mysqli_fetch_assoc($querycheck);
+    
+            $db_pass = $email_check['Password'];
+    
+            
+            
+            $pass_decode = password_verify($password, $db_pass);
+    
+            if($pass_decode){
+                $_SESSION['username'] = $email_check['U_id'];
+                ?>
+               <script>
+                   function showmsgl(){
+                       document.getElementById('ssmodel').style.visibility="visible";
+                   }setTimeout("showmsgl()",0);
+    
+                   function hidemsgl(){
+                       document.getElementById('ssmodel').style.visibility="hidden";
+                   }setTimeout("hidemsgl()",3000);
+    
+               </script>
+               
+               
+               
+               <?php
+            }else{
+                ?>
+               <script>
+                   function showmsglo(){
+                       document.getElementById('ssmodelo').style.visibility="visible";
+                   }setTimeout("showmsglo()",0);
+    
+                   function hidemsglo(){
+                       document.getElementById('ssmodelo').style.visibility="hidden";
+                   }setTimeout("hidemsglo()",3000);
+    
+               </script>
+               
+               
+               
+               <?php
+            }
+        }else{
+            echo "<script type='text/javascript'>alert('Email not registered/invalid');location.replace('home.php');</script>";
+        }
+    
+    }}
     mysqli_close($conn);
 ?>

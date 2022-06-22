@@ -110,7 +110,7 @@
             </div>
             <div class="room">
             <div style="font-size:18px;margin:10px 0px 10px;">
-                    Reservation
+                    Check Out
                 </div> 
                 <table id = "table"  >
                     <thead style="background-color:grey; height:5vh;">
@@ -129,11 +129,11 @@
                             $displayquery = "SELECT reservation.rev_id, reservation.Username, reservation.Contact, reservation.Checkindate, 
                             reservation.Checkoutdate, reservation.status, room.room_num, room_category.price FROM 
                             ((`reservation` INNER JOIN `room` on reservation.room_id = room.room_id) INNER JOIN
-                            `room_category` on reservation.cat_id = room_category.cat_id) ORDER BY rev_id DESC ";
+                            `room_category` on reservation.cat_id = room_category.cat_id) where reservation.status IN (2 , 3) ORDER BY rev_id DESC ";
                             $querydisplay = mysqli_query($conn,$displayquery);
 
                             while($result = mysqli_fetch_array($querydisplay)){
-                                if($result['status'] == 2){
+                                if($result['status'] == 2 ){
 
                                     $indate = date_create($result['Checkindate']);
                                     $outdate = date_create($result['Checkoutdate']);
@@ -163,7 +163,36 @@
                                         <td><?php echo $result['price']*$days->format('%a');?></td>
                                     </tr>
                             <?php    
-                                }}
+                                }elseif($result['status'] == 3){
+                                    $indate = date_create($result['Checkindate']);
+                                    $outdate = date_create($result['Checkoutdate']);
+
+                                    $days = date_diff($outdate,$indate);
+                                    
+
+                                ?>
+                                    <tr>
+                                        <td><?php echo $result['Username'];?> </td>
+                                        <td><?php echo $result['Contact'];?> </td>
+                                        <td><?php echo $result['room_num'];?></td>
+                                        <td>
+                                            <?php 
+                                                if($result['status'] == 0){
+                                                    echo '<span style="color:yellow">Pending</span>';
+                                                }else if($result['status'] == 1){
+                                                    echo '<span style="color:green">Checked in</span>';
+                                                }else if($result['status'] == 3){
+                                                    echo '<span style="color:red">Canceled</span>';
+                                                }
+                                                
+                                            ?>
+                                        </td>
+                                        <td><?php echo $result['Checkindate'];?></td>
+                                        <td><?php echo $result['Checkoutdate'];?></td>
+                                        <td style="text-decoration: line-through;"><?php echo $result['price']*$days->format('%a');?></td>
+                                    </tr><?php
+                                }
+                            }
                             ?>
                     </tbody>
                     </table>

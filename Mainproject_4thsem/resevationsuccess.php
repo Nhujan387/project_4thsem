@@ -33,8 +33,9 @@
         </div>
         
             <nav>
-                <ul>
-                    <li> <a href="home.php" ><button>Home</button></a></li>      
+            <ul>
+                    <li style="width:340px;"></li>
+                    <li> <a href="home.php?" ><button>Home</button></a></li>      
                     <li> <a href="room.php"><button class="active" style="color: red;">Rooms</button></a></li>
                     <li> <a href="about.php"><button>About us</button></a></li>
                     <li> <a href="Contact.php"><button>Contact us</button></a></li>
@@ -46,6 +47,22 @@
                     if(isset($_SESSION['username'])){?>
                     <li> <a href="logout.php"><button>Log out</button></a></li>
                    <?php }?>
+                   <li style="width:340px;"></li>
+                   <?php 
+                    if(isset($_SESSION['username'])){?>
+                    <?php 
+                        $numuser = $_SESSION['username'];
+                        $notification = "SELECT * from reservation where U_id = $numuser And status = 0";
+                        $notifyquery = mysqli_query($conn,$notification);
+                        
+                        if(mysqli_num_rows($notifyquery)>0){
+                            ?><li ><a href="notify.php"><img src="images/red.png" style="width:30px;margin-top:10px;"></a><?php
+                        }else{
+                            ?><li ><a href="notify.php"><img src="images/white.png" style="width:30px;margin-top:10px;"></a><?php
+                        }
+                    ?>
+                   <?php }?>
+                    
                 </ul>
             </nav>
     <div id="Suite" style="height:68vh;">
@@ -76,7 +93,7 @@
                             <p><u>Room Details</u></p>
                             <div>Room Number: <?php echo $_REQUEST['rno']?></div>
                             <div>Check-In: <?php echo $_REQUEST['cin']?></div>
-                            <div>Check-In: <?php echo $_REQUEST['cout']?></div>
+                            <div>Check-Out: <?php echo $_REQUEST['cout']?></div>
                             <div>Price: <?php echo $Totalprice?></div><br>
                             <p>Our hotel is always ready to provide you with best services. Our Hotel is and always be in your service.<br/> 
 
@@ -88,8 +105,8 @@
                             <br>
                             <b>Thanking you</b> </p>
                             <div style="text-align:right;">
-                            <a href="Editreservation.php?rid=<?= $_REQUEST['rid'] ?>&&rno=<?= $_REQUEST['rno']?>&&cin=<?= $_REQUEST['cin']?>&&cout=<?= $_REQUEST['cout']?>&&rs=<?= $_REQUEST['rs']?>&&nm=<?= $_REQUEST['nm']?>"><button style="width:10%;background-color:green;font-size:large;border:1px solid black;border-radius:5px">Edit</button></a>
-                            <a href="Cancelreservation.php?cid=<?= $catid ?>&&rid=<?= $_REQUEST['rid'] ?>&&rno=<?= $_REQUEST['rno']?>&&cin=<?= $_REQUEST['cin']?>&&cout=<?= $_REQUEST['cout']?>&&rs=<?= $_REQUEST['rs']?>&&nm=<?= $_REQUEST['nm']?>"><button style="width:30%;background-color:red;font-size:large;border:1px solid black;border-radius:5px">Cancel Reservation</button></a>
+                            <a href="Editreservation.php?revid=<?=$_REQUEST['revid'] ?>&&rid=<?= $_REQUEST['rid'] ?>&&rno=<?= $_REQUEST['rno']?>&&cin=<?= $_REQUEST['cin']?>&&cout=<?= $_REQUEST['cout']?>&&rs=<?= $_REQUEST['rs']?>&&nm=<?= $_REQUEST['nm']?>"><button style="color:white;width:10%;background-color:green;font-size:large;border:1px solid black;border-radius:5px">Edit</button></a>
+                            <a href="Cancelreservation.php?revid=<?=$_REQUEST['revid'] ?>&&cid=<?= $catid ?>&&rid=<?= $_REQUEST['rid'] ?>&&rno=<?= $_REQUEST['rno']?>&&cin=<?= $_REQUEST['cin']?>&&cout=<?= $_REQUEST['cout']?>&&rs=<?= $_REQUEST['rs']?>&&nm=<?= $_REQUEST['nm']?>"><button style="color:white;width:30%;background-color:red;font-size:large;border:1px solid black;border-radius:5px">Cancel Reservation</button></a>
                             </div>
                         </fieldset>
                         

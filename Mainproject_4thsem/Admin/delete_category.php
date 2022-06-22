@@ -9,7 +9,7 @@
 
     if($delete){
         ?> 
-        <script>alert("Room category deleted");
+        <script>alert("Room category removed");
             location.replace("room_category.php");
         </script><?php
        

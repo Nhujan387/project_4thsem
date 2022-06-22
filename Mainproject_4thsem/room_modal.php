@@ -1,12 +1,27 @@
 <?php 
     session_start();
     if(!isset($_SESSION['username'])){
-        $user = 'Please Sign in before Booking the room '; 
-        echo "<script type='text/javascript'>alert('$user');</script>";
-        header('refresh:0;url=room.php');
+        ?>
+        <script>
+            function showmsgrese(){
+                document.getElementById('userlogin').style.visibility="visible";
+            }setTimeout("showmsgrese()",0);
+
+            function hidemsgrese(){
+                document.getElementById('userlogin').style.visibility="hidden";
+            }setTimeout("hidemsgrese()",4000);
+
+            function hidemsgresep(){
+                location.replace("room.php");
+            }setTimeout("hidemsgresep()",1000);
+
+        </script>
+        
+        
+        
+        <?php
     }
     include 'db_configure.php' ;
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -121,8 +136,9 @@
         </div>
         
             <nav>
-                <ul>
-                    <li> <a href="home.php" ><button>Home</button></a></li>      
+            <ul>
+                    <li style="width:340px;"></li>
+                    <li> <a href="home.php?" ><button>Home</button></a></li>      
                     <li> <a href="room.php"><button class="active" style="color: red;">Rooms</button></a></li>
                     <li> <a href="about.php"><button>About us</button></a></li>
                     <li> <a href="Contact.php"><button>Contact us</button></a></li>
@@ -134,6 +150,22 @@
                     if(isset($_SESSION['username'])){?>
                     <li> <a href="logout.php"><button>Log out</button></a></li>
                    <?php }?>
+                   <li style="width:340px;"></li>
+                   <?php 
+                    if(isset($_SESSION['username'])){?>
+                    <?php 
+                        $numuser = $_SESSION['username'];
+                        $notification = "SELECT * from reservation where U_id = $numuser And status = 0";
+                        $notifyquery = mysqli_query($conn,$notification);
+                        
+                        if(mysqli_num_rows($notifyquery)>0){
+                            ?><li ><a href="notify.php"><img src="images/red.png" style="width:30px;margin-top:10px;"></a><?php
+                        }else{
+                            ?><li ><a href="notify.php"><img src="images/white.png" style="width:30px;margin-top:10px;"></a><?php
+                        }
+                    ?>
+                   <?php }?>
+                    
                 </ul>
             </nav>
     <div id="Suite">
@@ -184,6 +216,16 @@
                     </div>
                 </div>
             </div>
+            <div id="ssmoderes" style="width:100%;height: 100vh;position: fixed;top: 0;visibility:hidden;">
+                <div style="margin-top:100px;font-size:19px;height:7vh;text-align:center;color:white;background-color:red;border-radius:5px;margin-left:8px;width:220px">
+                Room Already reserved, please choose another
+                </div>
+           </div>
+           <div id="userlogin" style="width:100%;height: 100vh;position: fixed;top: 0;visibility:hidden;">
+                <div style="margin-top:100px;font-size:19px;height:7vh;text-align:center;color:white;background-color:red;border-radius:5px;margin-left:8px;width:260px">
+                Please signin before booking the room.
+                </div>
+           </div>
             <footer>
                 <p>Friends' Hotel, Copyright &copy; 2022</p>
             </footer>
@@ -201,12 +243,25 @@
         $cat_id =  $_REQUEST['cat_id'];
         $U_id = $_SESSION['username'];
 
-        $checkdate = "SELECT * from reservation where room_id=$room_id And checkindate between '$checkin' AND '$checkout' ";
+        $checkdate = "SELECT * from reservation where room_id=$room_id And `status` In (0,1) And checkindate between '$checkin' AND '$checkout' ";
         $querydatecheck = mysqli_query($conn,$checkdate);
 
 
         if(mysqli_num_rows($querydatecheck)>0){
-            ?><script>alert('Sorry the Room is already reserved for that date.');location.replace("room_list.php?cat_id=<?= $cat_id ?>");</script><?php
+            ?>
+           <script>
+               function showmsgres(){
+                   document.getElementById('ssmoderes').style.visibility="visible";
+               }setTimeout("showmsgres()",0);
+
+               function hidemsgres(){
+                   document.getElementById('ssmoderes').style.visibility="hidden";
+               }setTimeout("hidemsgres()",3000);
+           </script>
+           
+           
+           
+           <?php
         }else{
             
             $insert = "INSERT INTO `reservation`(`Username`, `Contact`, `Checkindate`, `Checkoutdate`, `status`, `room_id`, `U_id`, `cat_id`) VALUES
@@ -223,6 +278,7 @@
                 $pricequery = mysqli_query($conn,$displayprice);
                 $showprice  = mysqli_fetch_assoc($pricequery);
 
+
                 $indate = date_create($checkin);
                 $outdate = date_create($checkout);
                 $days = date_diff($outdate,$indate);
@@ -235,28 +291,52 @@
 
                 $subject = "Booking Successful";
                 $email = $mailid["Email"];
-                $body = "<div><b><u>Friend's Hotel</u></b><div><br/><hr/>
-                        <div>TO,</div>
-                        <div>$name</div><br/>
-                        <div>Subject= Successful Room Reservation.</div><br/>
-                        <div>Dear Sir/Madam,
-                        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This letter informs you that your booking has been successfully confirmed and we are eager to provide our service
-                        to you.</div>
-                        <p><u>Room Details</u></p>
-                        <div>Room Number: $result[room_num]</div><br/>
-                        <div>Check-In: $checkin</div><br/>
-                        <div>Check-out: $checkout</div><br/>
-                        <div>Price: $Totalprice</div><br/>
-                        <p>Our hotel is always ready to provide you with best services. Our Hotel is and always be in your service.<br/> 
-
-                        Please provide valid Govt. issued Address/ID proofs for all guests at check-in. (PAN Cards are not valid). <br/>
+                $body = "<div style=' margin-left: 25%; width: 50%; color: black; padding: 18px; '>
+                <div style='font-size: 25px; text-align: center; background: black; color: white; padding: 12px;'>
+                    <b><u><i><span style='color:red'>Friend's</span> Hotel</i></u></b>
+                </div>
+                <hr/>
+                
+                <div>
+                    TO,
                         
-                        Pay Reminder- 40% booking amount will be collected at the time of check-in. <br/>
-                        
-                        If you need any inquiries, please feel free to contact our customer service or office. We are always available to serve you.<br/>
-                        
-                        Thanking you. </p>
-                        ";
+                    <div><b>$name</b></div><br/>
+                    
+                    <div style=' padding: 8px; text-align: center; font-size: 20px; font-weight: bold;'>
+                        Subject= Successful Room Reservation.
+                    </div><br/>
+                    
+                    <div>Dear Sir/Madam,
+                    
+                        <div>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This letter informs you that your booking has been successfully confirmed and we are eager to provide our service
+                                to you. 
+                        </div>
+                        <div style='display: flex; margin-top: 15px; padding: 5px 0px 4px 8px; background-color: #FAF9F6; border-radius: 15px;'>
+                            <div style=width: 60%;'>
+                                <p style='font-size: 20px; text-align: center;'><u><b> Room Details </b></u></p>
+                                <div><b>Room Number:</b> $result[room_num]</div><br/>
+                                <div><b>Check-In:</b> $checkin</div><br/>
+                                <div><b>Check-out:</b> $checkout</div><br/>
+                                <div><b>Price:</b> $Totalprice</div><br/>
+                            </div>
+                            
+                        </div>
+                                <p>
+                                Our hotel is always ready to provide you with best services. Our Hotel is and always be in your service. 
+                                    
+                                Please provide valid Govt. issued Address/ID proofs for all guests at check-in. (PAN Cards are not valid). 
+                                                
+                                Pay Reminder- 40% booking amount will be collected at the time of check-in. 
+                                                
+                                If you need any inquiries, please feel free to contact our customer service or office. We are always available to serve you.<br/>
+                                                
+                                <br />
+                                <b>Thank you.</b>
+                            </p>
+                    </div>
+                </div>
+            </div>";
                 $success =mail($email,$subject,$body,$headers);
 
                 if($query){

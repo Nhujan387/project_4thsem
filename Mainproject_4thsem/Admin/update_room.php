@@ -181,11 +181,14 @@
             $update = "UPDATE `room` SET `room_num`='$room',`image`='$destinationfile',`cat_id`='$category'
             WHERE `room_id` = '$updateid'";
 
-            if($update){
-            ?>  <script> alert('Room updated successfully') ;location.replace("room.php");</script> <?php
-            }
+            
              
             $query = mysqli_query($conn,$update);
+
+            if($query){
+                ?>  <script> alert('Room updated successfully') ;location.replace("room.php");</script> <?php
+            }
+
         }
     }
 

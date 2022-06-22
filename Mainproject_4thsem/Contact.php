@@ -1,4 +1,4 @@
-<?php session_start(); include "signmodal.php";  ?>
+<?php session_start(); include "signmodal.php";  ?><?php include 'db_configure.php' ;?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -50,11 +50,12 @@
         </div>
         
             <nav>
-                <ul>
-                    <li> <a href="home.php" ><button  >Home</button></a></li>      
-                    <li> <a href="room.php"><button>Rooms</button></a></li>
-                    <li> <a href="about.php"><button>About us</button></a></li>
-                    <li> <a href="Contact.php" ><button class="active" style="color: red;">Contact us</button></a></li>
+            <ul>
+                    <li style="width:340px;"></li>
+                    <li> <a href="home.php?" ><button>Home</button></a></li>      
+                    <li> <a href="room.php"><button >Rooms</button></a></li>
+                    <li> <a href="about.php"><button >About us</button></a></li>
+                    <li> <a href="Contact.php"><button class="active" style="color: red;">Contact us</button></a></li>
                     <?php 
                     if(!isset($_SESSION['username'])){?>
                     <li> <a><button onclick="document.getElementById('signdiv').style.display='block'">Sign in</button></a></li>
@@ -63,6 +64,22 @@
                     if(isset($_SESSION['username'])){?>
                     <li> <a href="logout.php"><button>Log out</button></a></li>
                    <?php }?>
+                   <li style="width:340px;"></li>
+                   <?php 
+                    if(isset($_SESSION['username'])){?>
+                    <?php 
+                        $numuser = $_SESSION['username'];
+                        $notification = "SELECT * from reservation where U_id = $numuser And status = 0";
+                        $notifyquery = mysqli_query($conn,$notification);
+                        
+                        if(mysqli_num_rows($notifyquery)>0){
+                            ?><li ><a href="notify.php"><img src="images/red.png" style="width:30px;margin-top:10px;"></a><?php
+                        }else{
+                            ?><li ><a href="notify.php"><img src="images/white.png" style="width:30px;margin-top:10px;"></a><?php
+                        }
+                    ?>
+                   <?php }?>
+                    
                 </ul>
             </nav>
             <div class="m-container">
