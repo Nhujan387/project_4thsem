@@ -114,8 +114,8 @@
                 </nav>
             </div>
             <div class="tablein" style="margin-top:10px;">
-                <div style="font-size:18px;margin:10px 0px 10px;">
-                    Create <a style="font-size:22px; font-weight:bold; color:black; text-decoration:none" href="admin.php" >Admin</a> Account
+                <div style="font-size:24px;margin:10px 0px 10px;">
+                    Create <a style="font-size:24px; font-weight:bold; color:black; text-decoration:none" href="admin.php" >Admin</a> Account
                 </div> 
                 <div class="table">
                 <p style="color:red; font-size:16px;"> <?= $adminerror ?> </p>

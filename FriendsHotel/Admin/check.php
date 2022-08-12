@@ -109,8 +109,8 @@
                 </nav>
             </div>
             <div class="room">
-            <div style="font-size:18px;margin:10px 0px 10px;">
-                    Reservation
+            <div style="font-size:24px;margin:10px 0px 10px;">
+                    Check In
                 </div> 
                 <table id = "table"  >
                     <thead style="background-color:grey; height:5vh;">

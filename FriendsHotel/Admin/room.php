@@ -47,6 +47,7 @@
         .room{
             width: 98%;
             margin:0 auto;
+            height: 89vh;
 
         }
         table{
@@ -129,9 +130,25 @@
                 </nav>
             </div>
             <div class="room">
-                <div style="font-size:18px;margin:10px 0px 10px;">
-                    Rooms
-                </div> 
+                <div style="display:grid;grid-template-columns:40% 60%">
+                    <div style="font-size:24px;margin:10px 0px 10px;">
+                        Rooms
+                    </div> 
+                    <div style="font-size:23px;text-align:right;margin:5px;">
+                        <form action="" method="GET">
+                                <label >Select By Category:</label>
+                                <Select name="Choosing" style="width:45%;font-size:large;" >
+                                    <option value="Exc" <?php if(isset($_GET['Choosing'])&& $_GET['Choosing']=="Exc") {echo "selected";} ?>>Exclusive Suite</option>
+                                    <option value="Delx"<?php if(isset($_GET['Choosing'])&& $_GET['Choosing']=="Delx") {echo "selected";} ?>>Deluxe Room</option>
+                                    <option value="Fam"<?php if(isset($_GET['Choosing'])&& $_GET['Choosing']=="Fam") {echo "selected";} ?>>Family Room</option>
+                                    <option value="Doub"<?php if(isset($_GET['Choosing'])&& $_GET['Choosing']=="Doub") {echo "selected";} ?>>Double Bedroom</option>
+                                    <option value="Sing"<?php if(isset($_GET['Choosing'])&& $_GET['Choosing']=="Sing") {echo "selected";} ?>>Single Bedroom</option>
+                                    
+                                </Select>
+                                <input type="submit" value="Submit" style="color:white;background-color:black;cursor:pointer;font-size:large;border-radius:5px;"/>
+                        </form>
+                    </div>
+                </div>
                 <table id = "table"  >
                     <thead style="background-color:grey; height:5vh;">
                         <tr>
@@ -145,8 +162,28 @@
                     </thead>
                     <tbody>
                         <?php
-                            $displayquery = "SELECT room.room_id, room.room_num, room_category.catagory_name, room.image,room_category.cat_id, room.status FROM 
-                            `room` inner JOIN `room_category` on room.cat_id = room_category.cat_id ORDER by room.room_num DESC";
+                            
+                            $Choose_option = "Exclusive Suite";
+
+                        if(isset($_GET['Choosing']))
+                        {
+                            if($_GET['Choosing']=="Delx"){
+                                $Choose_option = "Deluxe Room";
+                            }elseif($_GET['Choosing']=="Fam"){
+                                $Choose_option = "Family Room";
+                            }elseif($_GET['Choosing']=="Doub"){
+                                $Choose_option = "Double Bedroom";
+                            }elseif($_GET['Choosing']=="Sing"){
+                                $Choose_option = "Single Bedroom";
+                            }elseif($_GET['Choosing']=="Exc"){
+                                $Choose_option = "Exclusive Suite";
+                            }
+                        }
+
+                            $displayquery = "SELECT room.room_id, room.room_num, room_category.catagory_name, 
+                            room.image,room_category.cat_id, room.status FROM `room` inner JOIN `room_category` 
+                            on room.cat_id = room_category.cat_id WHERE room_category.catagory_name = '$Choose_option' 
+                            ORDER BY room.room_num ASC ";
                             $querydisplay = mysqli_query($conn,$displayquery);
                             $i=1;
                             while($fetch = mysqli_fetch_array($querydisplay)){
@@ -164,7 +201,7 @@
                                                 }else if($fetch['status'] == 0){
                                                     echo '<span style="color:#FFFF00">Pending</span>';
                                                 }else if($fetch['status'] == 1){
-                                                    echo '<span style="color:red">Unavilable</span>';
+                                                    echo '<span style="color:red">Unavailable</span>';
                                                 }
                                             ?>
                                         </td>

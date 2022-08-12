@@ -100,7 +100,7 @@
             </div>
             <div class="tablein" >
                 <h2 style="margin:10px 0px 10px;">Welcome <?= $_SESSION['Adname'];?> </h2>
-                <div style="font-size:18px;margin:10px 0px 10px;">
+                <div style="font-size:24px;margin:10px 0px 10px;">
                     Admin Accounts
                 </div>  
                 <table id = "table"  >

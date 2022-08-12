@@ -109,7 +109,7 @@
                 </nav>
             </div>
             <div class="room">
-            <div style="font-size:18px;margin:10px 0px 10px;">
+            <div style="font-size:24px;margin:10px 0px 10px;">
                     Check Out
                 </div> 
                 <table id = "table"  >

@@ -91,7 +91,7 @@
                 </nav>
             </div>
             <div class="catagory">
-                <div style="font-size:18px;margin:10px 0px 10px;">
+                <div style="font-size:24px;margin:10px 0px 10px;">
                     Add Rooms
                 </div>  
                 <div class="catform">

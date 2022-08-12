@@ -93,7 +93,7 @@
                 </nav>
             </div>
             <div class="catagory">
-                <div style="font-size:18px;margin:10px 0px 10px;">
+                <div style="font-size:24px;margin:10px 0px 10px;">
                     Checkout
                 </div>  
                 <div class="catform">

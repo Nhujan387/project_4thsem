@@ -124,7 +124,7 @@
                 </nav>
             </div>
             <div class="tablein" >
-                <div style="font-size:18px;margin:10px 0px 10px;">
+                <div style="font-size:24px;margin:10px 0px 10px;">
                     Room Categories
                 </div>  
                 <table id = "table"  >
