@@ -1,0 +1,82 @@
+.cont-container{
+    padding: 16px;
+}
+.column1{
+    font-size: 18px;
+}
+
+.cont-header{
+    font-size: 30px;
+}
+
+.cont-text{
+    font-size: 18px;
+}
+
+.cont-fname{
+    width: 98%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    font-size: 18px;
+}
+
+.cont-lname{
+    width: 98%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    font-size: 18px;
+
+}
+
+.cont-email{
+    width: 98%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    font-size: 18px;
+
+}
+
+.cont-contacting{
+    width: 98%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    font-size: 18px;
+}
+
+.cont-subject{
+    width: 98%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    font-size: 18px;
+
+}
+.sub_box{
+    width: 100%;
+    text-align: right;
+}
+.cont-submit {
+    background-color: #FD4545;
+    color: white;
+    padding: 14px;
+    font-size: 18px;
+    border: none;
+    border-radius: 14px;
+    width: 12%;
+    
+}
+
+input[type=submit]:hover {
+    background-color: #da3232;
+    font-weight: bold;
+    color: white;
+}
